@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color: #f2efe6;
+  background-color: #0a0f0c;
+  font-family: 'Inter', sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html { scroll-behavior: smooth; }
+body { margin: 0; min-width: 320px; background: #0a0f0c; }
+* { box-sizing: border-box; }
+::selection { background: rgba(201,168,106,.25); color: #fff; }
