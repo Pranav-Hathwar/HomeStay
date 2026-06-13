@@ -1,10 +1,12 @@
-import { useState } from 'react';
+import { useState, lazy, Suspense } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import { Expand } from 'lucide-react';
 import Reveal from '../components/Reveal';
-import Lightbox from '../components/Lightbox';
 import { galleryImages } from '../data/images';
 import { EASE } from '../motion';
+
+// Loads only when a tile is first opened.
+const Lightbox = lazy(() => import('../components/Lightbox'));
 
 // Bento spans (Tailwind classes) keyed by tile index for a mixed-size grid.
 const SPANS = [
@@ -63,7 +65,9 @@ export default function Gallery() {
         ))}
       </div>
 
-      <Lightbox images={galleryImages} index={open} onClose={() => setOpen(null)} onIndex={setOpen} />
+      <Suspense fallback={null}>
+        <Lightbox images={galleryImages} index={open} onClose={() => setOpen(null)} onIndex={setOpen} />
+      </Suspense>
     </section>
   );
 }

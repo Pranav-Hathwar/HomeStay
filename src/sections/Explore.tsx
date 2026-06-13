@@ -1,10 +1,12 @@
-import { useState } from 'react';
+import { useState, lazy, Suspense } from 'react';
 import Reveal from '../components/Reveal';
 import Parallax from '../components/Parallax';
 import Carousel3D from '../components/Carousel3D';
-import RouteMap from '../components/RouteMap';
-import MapModal from '../components/MapModal';
 import { ATTRACTIONS, type Attraction, directionsUrl, embedDirectionsUrl } from '../data/site';
+
+// Map components pull a Google Maps embed — defer until this section is reached.
+const RouteMap = lazy(() => import('../components/RouteMap'));
+const MapModal = lazy(() => import('../components/MapModal'));
 
 export default function Explore() {
   const [selected, setSelected] = useState<Attraction | null>(null);
@@ -53,13 +55,17 @@ export default function Explore() {
           </div>
           <div className="overflow-hidden rounded-[32px] border border-line/50 bg-forest/70 p-4 shadow-glow">
             <div className="h-[320px] w-full md:h-[380px]">
-              <RouteMap attractions={ATTRACTIONS} onSelect={handleSelect} />
+              <Suspense fallback={<div className="h-full w-full animate-pulse rounded-2xl bg-moss/30" />}>
+                <RouteMap attractions={ATTRACTIONS} onSelect={handleSelect} />
+              </Suspense>
             </div>
           </div>
         </div>
       </Reveal>
 
-      <MapModal attraction={selected} onClose={() => setSelected(null)} />
+      <Suspense fallback={null}>
+        <MapModal attraction={selected} onClose={() => setSelected(null)} />
+      </Suspense>
     </section>
   );
 }

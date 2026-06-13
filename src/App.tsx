@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, lazy, Suspense } from 'react';
 import Lenis from 'lenis';
 import { useReducedMotion } from 'framer-motion';
 
@@ -6,7 +6,9 @@ import Nav from './components/Nav';
 import ScrollProgress from './components/ScrollProgress';
 import SceneryBackground from './components/SceneryBackground';
 import StickyBookBar from './components/StickyBookBar';
-import ChatWidget from './components/ChatWidget';
+
+// Deferred: not needed for first paint — split into their own chunks.
+const ChatWidget = lazy(() => import('./components/ChatWidget'));
 import Hero from './sections/Hero';
 import StatStrip from './sections/StatStrip';
 import ThePlace from './sections/ThePlace';
@@ -80,7 +82,9 @@ export default function App() {
 
       <Footer />
       <StickyBookBar />
-      <ChatWidget />
+      <Suspense fallback={null}>
+        <ChatWidget />
+      </Suspense>
     </div>
   );
 }

@@ -25,3 +25,6 @@ jobs:
 
       - name: Typecheck + build
         run: npm run build
+
+      - name: Bundle size budget
+        run: npm run size
