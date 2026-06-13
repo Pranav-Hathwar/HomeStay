@@ -21,7 +21,7 @@ export const siteConfig = {
   airbnbUrl: 'https://www.airbnb.co.in/', // <AIRBNB_LISTING_URL>
   instagramUrl: 'https://instagram.com/', // <INSTAGRAM_URL>
   pricePerNight: '600 per person',            // <PRICE> e.g. '4,500' — shown as "from ₹4,500 / night"
-  siteUrl: 'https://mungaruhomestays.com', // <SITE_URL> canonical/OG/sitemap base, no trailing slash
+  siteUrl: 'https://home-stay-two.vercel.app', // <SITE_URL> canonical/OG/sitemap base, no trailing slash
   ogImage: '/og-image.jpg',         // <OG_IMAGE> 1200×630, placed in /public
   // ──────────────────────────────────────────────────────────────────────────
 

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://mungaruhomestays.com/sitemap.xml
+Sitemap: https://home-stay-two.vercel.app/sitemap.xml
