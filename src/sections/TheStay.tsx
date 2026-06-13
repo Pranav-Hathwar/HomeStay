@@ -1,6 +1,6 @@
 import { Tv, BedDouble, Trees } from 'lucide-react';
 import Reveal from '../components/Reveal';
-import TiltCard from '../components/TiltCard';
+import TiltCard, { TiltLayer } from '../components/TiltCard';
 import { property } from '../data/images';
 
 const SPACES = [
@@ -55,12 +55,18 @@ export default function TheStay() {
           <Reveal key={s.title} delay={i * 0.1}>
             <TiltCard className="h-full">
               <article className="flex h-full flex-col rounded-[28px] border border-line/60 bg-card/90 p-7 transition-colors hover:border-gold/40 hover:shadow-glow">
-                <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl border border-line/60 bg-moss/70">
-                  <s.icon className="h-6 w-6 text-gold-bright" />
-                </div>
-                <div className="text-xs uppercase tracking-[0.28em] text-gold-bright">{s.meta}</div>
-                <h3 className="mt-2 font-display text-2xl text-fog">{s.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-dim">{s.copy}</p>
+                <TiltLayer z={45}>
+                  <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl border border-line/60 bg-moss/70 shadow-glow">
+                    <s.icon className="h-6 w-6 text-gold-bright" />
+                  </div>
+                </TiltLayer>
+                <TiltLayer z={22}>
+                  <div className="text-xs uppercase tracking-[0.28em] text-gold-bright">{s.meta}</div>
+                  <h3 className="mt-2 font-display text-2xl text-fog">{s.title}</h3>
+                </TiltLayer>
+                <TiltLayer z={10}>
+                  <p className="mt-3 text-sm leading-relaxed text-dim">{s.copy}</p>
+                </TiltLayer>
               </article>
             </TiltCard>
           </Reveal>

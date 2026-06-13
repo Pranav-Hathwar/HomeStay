@@ -16,3 +16,17 @@ html { scroll-behavior: smooth; }
 body { margin: 0; min-width: 320px; background: #0a0f0c; }
 * { box-sizing: border-box; }
 ::selection { background: rgba(201,168,106,.25); color: #fff; }
+
+/* Fraunces is a variable font with an optical-size axis — let large display
+   cuts take the high-contrast forms automatically while body stays readable. */
+.font-display { font-optical-sizing: auto; }
+
+@layer components {
+  /* One canonical glassmorphism recipe so every frosted surface matches. */
+  .glass {
+    @apply border border-line/50 bg-ink/40 backdrop-blur-md;
+  }
+  .glass-strong {
+    @apply border border-line/40 bg-ink/70 backdrop-blur-xl;
+  }
+}

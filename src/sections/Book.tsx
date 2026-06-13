@@ -1,6 +1,8 @@
 import { useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
 import { Home, Users, ParkingCircle, Mountain, MessageCircle, ExternalLink, ArrowRight } from 'lucide-react';
 import Reveal from '../components/Reveal';
+import Parallax from '../components/Parallax';
 import { siteConfig, whatsappUrl, bookingMessage } from '../data/site';
 
 const PERKS = [
@@ -41,9 +43,10 @@ export default function Book() {
     <section id="book" className="relative overflow-hidden border-y border-line/40 bg-forest/30 backdrop-blur-md py-20 lg:py-28">
       <div className="relative mx-auto max-w-7xl px-4 lg:px-8">
         <div className="grid gap-10 lg:grid-cols-[1fr_0.9fr] lg:items-center">
-          <Reveal>
+          <Parallax distance={28}>
+           <Reveal>
             <p className="text-sm uppercase tracking-[0.35em] text-gold-bright">Book</p>
-            <h2 className="mt-3 font-display text-4xl leading-tight tracking-tight text-fog md:text-5xl">
+            <h2 className="mt-3 text-balance font-display text-4xl leading-tight tracking-tight text-fog md:text-5xl">
               Check availability.
             </h2>
             <p className="mt-4 max-w-md text-dim">
@@ -60,10 +63,12 @@ export default function Book() {
                 </li>
               ))}
             </ul>
-          </Reveal>
+           </Reveal>
+          </Parallax>
 
           <Reveal delay={0.1}>
-            <form
+            <motion.form
+              layout
               onSubmit={handleSubmit}
               className="rounded-[28px] border border-line/60 bg-card/90 p-6 shadow-glow backdrop-blur md:p-8"
             >
@@ -112,19 +117,29 @@ export default function Book() {
                 </select>
               </div>
 
-              {error && (
-                <p role="alert" className="mt-4 text-sm text-red-300">
-                  {error}
-                </p>
-              )}
+              <AnimatePresence>
+                {error && (
+                  <motion.p
+                    layout
+                    role="alert"
+                    initial={{ opacity: 0, height: 0, marginTop: 0 }}
+                    animate={{ opacity: 1, height: 'auto', marginTop: 16 }}
+                    exit={{ opacity: 0, height: 0, marginTop: 0 }}
+                    className="overflow-hidden text-sm text-red-300"
+                  >
+                    {error}
+                  </motion.p>
+                )}
+              </AnimatePresence>
 
-              <button
+              <motion.button
+                layout
                 type="submit"
                 className="group mt-6 flex w-full items-center justify-center gap-2 rounded-full border border-gold/70 bg-gold/15 px-5 py-3.5 text-sm font-semibold text-gold-bright transition hover:bg-gold/25"
               >
                 Check Availability on WhatsApp
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-              </button>
+              </motion.button>
 
               <div className="mt-4 flex flex-col gap-3 sm:flex-row">
                 <a
@@ -144,7 +159,7 @@ export default function Book() {
                   WhatsApp <MessageCircle className="h-4 w-4" />
                 </a>
               </div>
-            </form>
+            </motion.form>
           </Reveal>
         </div>
       </div>

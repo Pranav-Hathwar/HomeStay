@@ -1,6 +1,8 @@
 import { motion } from 'framer-motion';
 import { Trees, Coffee, Mountain, Home } from 'lucide-react';
 import Reveal from '../components/Reveal';
+import Parallax from '../components/Parallax';
+import { EASE } from '../motion';
 
 const FEATURES = [
   {
@@ -29,12 +31,14 @@ export default function WhyMungaru() {
   return (
     <section className="relative overflow-hidden border-y border-line/40 bg-forest/30 backdrop-blur-md py-20 lg:py-28">
       <div className="relative mx-auto max-w-7xl px-4 lg:px-8">
-        <Reveal>
-          <p className="text-sm uppercase tracking-[0.35em] text-gold-bright">Why Mungaru</p>
-          <h2 className="mt-3 max-w-2xl font-display text-4xl leading-tight tracking-tight text-fog md:text-5xl">
-            Four reasons the valley keeps people coming back.
-          </h2>
-        </Reveal>
+        <Parallax distance={36}>
+          <Reveal>
+            <p className="text-sm uppercase tracking-[0.35em] text-gold-bright">Why Mungaru</p>
+            <h2 className="mt-3 max-w-2xl text-balance font-display text-4xl leading-tight tracking-tight text-fog md:text-5xl">
+              Four reasons the valley keeps people coming back.
+            </h2>
+          </Reveal>
+        </Parallax>
 
         <div className="mt-12 grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
           {FEATURES.map((f, i) => (
@@ -43,7 +47,7 @@ export default function WhyMungaru() {
               initial={{ opacity: 0, y: 28 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.6, delay: i * 0.1 }}
+              transition={{ duration: 0.6, delay: i * 0.1, ease: EASE }}
               whileHover={{ y: -8 }}
               className="group relative overflow-hidden rounded-[28px] border border-line/60 bg-card/90 p-7 transition-colors hover:border-gold/40 hover:shadow-glow"
             >

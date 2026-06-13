@@ -1,5 +1,7 @@
 import { motion } from 'framer-motion';
 import { Mountain, Users, Footprints, Navigation } from 'lucide-react';
+import CountUp from '../components/CountUp';
+import { EASE } from '../motion';
 
 const STATS = [
   { icon: Mountain, value: '906 m', label: 'Elevation' },
@@ -18,11 +20,13 @@ export default function StatStrip() {
             initial={{ opacity: 0, y: 18 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: i * 0.08 }}
+            transition={{ duration: 0.6, delay: i * 0.08, ease: EASE }}
             className="flex flex-col items-center gap-1 px-2 py-4 text-center sm:px-6"
           >
             <s.icon className="mb-1 h-5 w-5 text-gold-bright" />
-            <div className="font-display text-3xl text-fog md:text-4xl">{s.value}</div>
+            <div className="font-display text-3xl text-fog md:text-4xl">
+              <CountUp value={s.value} />
+            </div>
             <div className="text-xs uppercase tracking-[0.2em] text-dim">{s.label}</div>
           </motion.div>
         ))}

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Reveal from '../components/Reveal';
+import Parallax from '../components/Parallax';
 import Carousel3D from '../components/Carousel3D';
 import RouteMap from '../components/RouteMap';
 import MapModal from '../components/MapModal';
@@ -20,15 +21,17 @@ export default function Explore() {
 
   return (
     <section id="explore" className="mx-auto max-w-7xl px-4 py-20 lg:px-8 lg:py-28">
-      <Reveal>
-        <p className="text-sm uppercase tracking-[0.35em] text-gold-bright">Explore Mudigere</p>
-        <h2 className="mt-3 max-w-2xl font-display text-4xl leading-tight tracking-tight text-fog md:text-5xl">
-          Trails, peaks and temples — all from one doorstep.
-        </h2>
-        <p className="mt-3 max-w-xl text-dim">
-          Drag through the places nearby, then tap one to draw directions from the homestay.
-        </p>
-      </Reveal>
+      <Parallax distance={36}>
+        <Reveal>
+          <p className="text-sm uppercase tracking-[0.35em] text-gold-bright">Explore Mudigere</p>
+          <h2 className="mt-3 max-w-2xl text-balance font-display text-4xl leading-tight tracking-tight text-fog md:text-5xl">
+            Trails, peaks and temples — all from one doorstep.
+          </h2>
+          <p className="mt-3 max-w-xl text-dim">
+            Drag through the places nearby, then tap one to draw directions from the homestay.
+          </p>
+        </Reveal>
+      </Parallax>
 
       {/* A) 3D depth carousel */}
       <Reveal delay={0.1} className="mt-12">

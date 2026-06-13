@@ -91,6 +91,7 @@ export default function Hero() {
           >
             <MagneticButton
               href="#book"
+              spotlight
               className="group inline-flex items-center gap-2 rounded-full border border-gold/70 bg-gold/15 px-6 py-3.5 text-sm font-semibold text-gold-bright shadow-glow transition-colors hover:bg-gold/25"
             >
               Check Availability
@@ -107,7 +108,7 @@ export default function Hero() {
 
         {/* slide counter + progress */}
         <div className="flex items-end justify-start lg:items-center lg:justify-center">
-          <div className="rounded-3xl border border-line/50 bg-ink/30 p-4 backdrop-blur-md">
+          <div className="glass rounded-3xl p-4">
             <div className="text-right font-display text-lg tracking-[0.2em] text-fog">
               0{active + 1}
               <span className="text-dim"> / 0{heroImages.length}</span>

@@ -1,10 +1,15 @@
 import { useEffect } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
+import { EASE } from '../motion';
 
 type Img = { src: string; alt: string };
 
-/** Keyboard- and swipe-navigable image lightbox. */
+/**
+ * Keyboard- and swipe-navigable image lightbox. When the device allows motion,
+ * the opened image shares a `layoutId` with its gallery tile, so the tile
+ * physically grows into the lightbox (and shrinks back on close).
+ */
 export default function Lightbox({
   images,
   index,
@@ -17,6 +22,7 @@ export default function Lightbox({
   onIndex: (i: number) => void;
 }) {
   const open = index !== null;
+  const reduce = useReducedMotion();
 
   useEffect(() => {
     if (!open) return;
@@ -43,8 +49,9 @@ export default function Lightbox({
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
+          transition={{ duration: 0.3 }}
           onClick={onClose}
-          className="fixed inset-0 z-[80] flex items-center justify-center bg-ink/95 p-4 backdrop-blur-sm"
+          className="fixed inset-0 z-[80] flex items-center justify-center bg-ink/95 p-4 backdrop-blur-md"
           role="dialog"
           aria-modal="true"
           aria-label="Image viewer"
@@ -78,26 +85,25 @@ export default function Lightbox({
             <ChevronRight className="h-6 w-6" />
           </button>
 
-          <AnimatePresence mode="wait">
-            <motion.img
-              key={index}
-              src={images[index!].src}
-              alt={images[index!].alt}
-              drag="x"
-              dragConstraints={{ left: 0, right: 0 }}
-              dragElastic={0.2}
-              onDragEnd={(_, info) => {
-                if (info.offset.x < -80) go(1);
-                else if (info.offset.x > 80) go(-1);
-              }}
-              onClick={(e) => e.stopPropagation()}
-              initial={{ opacity: 0, scale: 0.96 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.96 }}
-              transition={{ duration: 0.25 }}
-              className="max-h-[82vh] max-w-[92vw] cursor-grab rounded-2xl object-contain shadow-2xl active:cursor-grabbing"
-            />
-          </AnimatePresence>
+          {/* keyed so navigating swaps the morph target to the new tile */}
+          <motion.img
+            key={index}
+            layoutId={reduce ? undefined : `tile-${index}`}
+            src={images[index!].src}
+            alt={images[index!].alt}
+            drag="x"
+            dragConstraints={{ left: 0, right: 0 }}
+            dragElastic={0.2}
+            onDragEnd={(_, info) => {
+              if (info.offset.x < -80) go(1);
+              else if (info.offset.x > 80) go(-1);
+            }}
+            onClick={(e) => e.stopPropagation()}
+            initial={reduce ? { opacity: 0, scale: 0.96 } : false}
+            animate={reduce ? { opacity: 1, scale: 1 } : undefined}
+            transition={{ duration: 0.4, ease: EASE }}
+            className="max-h-[82vh] max-w-[92vw] cursor-grab rounded-2xl object-contain shadow-2xl active:cursor-grabbing"
+          />
 
           <div className="absolute bottom-5 left-1/2 -translate-x-1/2 text-sm tracking-[0.2em] text-dim">
             {String(index! + 1).padStart(2, '0')} / {String(images.length).padStart(2, '0')}
