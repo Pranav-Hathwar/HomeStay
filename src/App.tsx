@@ -5,6 +5,8 @@ import { useReducedMotion } from 'framer-motion';
 import Nav from './components/Nav';
 import ScrollProgress from './components/ScrollProgress';
 import SceneryBackground from './components/SceneryBackground';
+import StickyBookBar from './components/StickyBookBar';
+import ChatWidget from './components/ChatWidget';
 import Hero from './sections/Hero';
 import StatStrip from './sections/StatStrip';
 import ThePlace from './sections/ThePlace';
@@ -13,7 +15,9 @@ import TheStay from './sections/TheStay';
 import Amenities from './sections/Amenities';
 import Explore from './sections/Explore';
 import Gallery from './sections/Gallery';
+import Reviews from './sections/Reviews';
 import Book from './sections/Book';
+import Faq from './sections/Faq';
 import Footer from './sections/Footer';
 
 export default function App() {
@@ -43,8 +47,19 @@ export default function App() {
           'radial-gradient(120% 90% at 50% -10%, #18241c 0%, #0e150f 45%, #0a0f0c 100%)',
       }}
     >
+      {/* Skip link for keyboard users */}
+      <a
+        href="#top"
+        className="sr-only focus-visible:not-sr-only focus-visible:fixed focus-visible:left-4 focus-visible:top-4 focus-visible:z-[100] focus-visible:rounded-full focus-visible:border focus-visible:border-gold/70 focus-visible:bg-ink focus-visible:px-4 focus-visible:py-2 focus-visible:text-sm focus-visible:text-gold-bright"
+      >
+        Skip to content
+      </a>
+
       {/* Cinematic misty-valley backdrop the whole site floats on */}
       <SceneryBackground />
+
+      {/* Film-grain texture overlay (pure CSS, fixed, non-interactive) */}
+      <div className="grain pointer-events-none fixed inset-0 z-[5]" aria-hidden="true" />
 
       <ScrollProgress />
       <Nav />
@@ -58,10 +73,14 @@ export default function App() {
         <Amenities />
         <Explore />
         <Gallery />
+        <Reviews />
         <Book />
+        <Faq />
       </main>
 
       <Footer />
+      <StickyBookBar />
+      <ChatWidget />
     </div>
   );
 }

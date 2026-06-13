@@ -1,5 +1,5 @@
 import { motion, useReducedMotion } from 'framer-motion';
-import scenery from '../assets/mudigere1.jpeg';
+import scenery from '../assets/mudigere1.webp';
 
 /**
  * The cinematic backdrop the whole site sits on: a real misty Malnad valley

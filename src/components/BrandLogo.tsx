@@ -1,4 +1,4 @@
-import logoSrc from '../assets/mungaru-logo.png';
+import logoSrc from '../assets/mungaru-logo.webp';
 
 type BrandLogoProps = {
   className?: string;

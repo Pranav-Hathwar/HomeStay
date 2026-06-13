@@ -7,18 +7,39 @@ const LINKS = [
   { label: 'The Stay', href: '#the-stay' },
   { label: 'Explore', href: '#explore' },
   { label: 'Gallery', href: '#gallery' },
+  { label: 'Reviews', href: '#reviews' },
   { label: 'Book', href: '#book' },
 ];
 
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const [active, setActive] = useState('');
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  // Scroll-spy: mark the section currently nearest the top as active.
+  useEffect(() => {
+    const ids = LINKS.map((l) => l.href.slice(1));
+    const els = ids
+      .map((id) => document.getElementById(id))
+      .filter((el): el is HTMLElement => el !== null);
+    const io = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (visible) setActive(visible.target.id);
+      },
+      { rootMargin: '-45% 0px -50% 0px', threshold: [0, 0.25, 0.5, 1] }
+    );
+    els.forEach((el) => io.observe(el));
+    return () => io.disconnect();
   }, []);
 
   // Lock body scroll while the mobile menu is open.
@@ -48,15 +69,28 @@ export default function Nav() {
           </a>
 
           <div className="hidden items-center gap-8 lg:flex">
-            {LINKS.map((l) => (
-              <a
-                key={l.href}
-                href={l.href}
-                className="text-sm text-dim transition-colors hover:text-fog"
-              >
-                {l.label}
-              </a>
-            ))}
+            {LINKS.map((l) => {
+              const isActive = active === l.href.slice(1);
+              return (
+                <a
+                  key={l.href}
+                  href={l.href}
+                  aria-current={isActive ? 'true' : undefined}
+                  className={`relative text-sm transition-colors hover:text-fog ${
+                    isActive ? 'text-fog' : 'text-dim'
+                  }`}
+                >
+                  {l.label}
+                  {isActive && (
+                    <motion.span
+                      layoutId="nav-active"
+                      className="absolute -bottom-1.5 left-0 h-0.5 w-full rounded-full bg-gold-bright"
+                      transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                    />
+                  )}
+                </a>
+              );
+            })}
           </div>
 
           <div className="hidden items-center gap-3 lg:flex">

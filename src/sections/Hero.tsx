@@ -1,9 +1,10 @@
-import { useEffect, useState } from 'react';
-import { motion, useReducedMotion } from 'framer-motion';
+import { useEffect, useRef, useState } from 'react';
+import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
 import { ArrowRight, Compass, MousePointer2 } from 'lucide-react';
 import MistBackground from '../components/MistBackground';
 import MagneticButton from '../components/MagneticButton';
 import { heroImages } from '../data/images';
+import { siteConfig } from '../data/site';
 
 const HEADLINE = ['Wake', 'up', 'in', 'the', 'mist.'];
 const SLIDE_MS = 5500;
@@ -11,6 +12,12 @@ const SLIDE_MS = 5500;
 export default function Hero() {
   const reduce = useReducedMotion();
   const [active, setActive] = useState(0);
+  const ref = useRef<HTMLElement>(null);
+  const hasPrice = siteConfig.pricePerNight && !siteConfig.pricePerNight.includes('_');
+
+  const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] });
+  const textY = useTransform(scrollYProgress, [0, 1], reduce ? ['0%', '0%'] : ['0%', '40%']);
+  const textOpacity = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
 
   useEffect(() => {
     const t = setInterval(() => setActive((s) => (s + 1) % heroImages.length), SLIDE_MS);
@@ -18,7 +25,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="relative flex min-h-[100svh] items-center overflow-hidden border-b border-line/40">
+    <section ref={ref} className="relative flex min-h-[100svh] items-center overflow-hidden border-b border-line/40">
       {/* crossfading Ken-Burns slides */}
       <div className="absolute inset-0">
         {heroImages.map((img, i) => (
@@ -48,7 +55,7 @@ export default function Hero() {
       <MistBackground mountains intensity="subtle" />
 
       <div className="relative mx-auto grid min-h-[100svh] w-full max-w-7xl grid-cols-1 items-center gap-10 px-4 pb-24 pt-28 lg:grid-cols-[1fr_120px] lg:px-8">
-        <div className="max-w-3xl">
+        <motion.div className="max-w-3xl" style={{ y: textY, opacity: textOpacity }}>
           <motion.p
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
@@ -104,7 +111,21 @@ export default function Hero() {
               <Compass className="h-4 w-4" /> Explore Nearby
             </MagneticButton>
           </motion.div>
-        </div>
+
+          <motion.p
+            initial={{ opacity: 0, y: 14 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 1.2 }}
+            className="mt-5 text-sm text-dim"
+          >
+            {hasPrice && (
+              <>
+                from <span className="font-display text-base text-fog">₹{siteConfig.pricePerNight}</span> / night ·{' '}
+              </>
+            )}
+            Entire home · sleeps 8–10
+          </motion.p>
+        </motion.div>
 
         {/* slide counter + progress */}
         <div className="flex items-end justify-start lg:items-center lg:justify-center">
