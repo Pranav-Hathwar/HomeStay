@@ -52,12 +52,12 @@ export type Review = { name: string; place: string; date: string; stars: number;
 
 // Placeholder guest reviews — swap with real Airbnb/Google quotes before launch.
 export const REVIEWS: Review[] = [
-  { name: 'Ananya R.', place: 'Bengaluru', date: 'Aug 2025', stars: 5, quote: 'Woke up to clouds rolling through the valley. The whole house to ourselves, spotless, and the host guided us to a sunrise trek. Already planning our return.' },
-  { name: 'Karthik & Meera', place: 'Mysuru', date: 'Jul 2025', stars: 5, quote: 'The monsoon view from the backyard is unreal. Hot water, full kitchen, fast Wi-Fi — wild outside, completely comfortable inside.' },
-  { name: 'Daniel F.', place: 'Goa', date: 'Jun 2025', stars: 5, quote: 'Perfect base for Ettina Bhuja and Kudremukh. Quiet, private, and the directions on WhatsApp made everything effortless.' },
-  { name: 'Sneha P.', place: 'Hyderabad', date: 'May 2025', stars: 5, quote: 'Came for a digital detox, left recharged. Birdsong, rain, coffee on the veranda. The photos do not do the green justice.' },
-  { name: 'Rohan M.', place: 'Chennai', date: 'Apr 2025', stars: 5, quote: 'Booked the whole place for a family of nine. Everyone had space, the kids loved the hall, and the power backup held through a storm.' },
-  { name: 'Aisha K.', place: 'Pune', date: 'Mar 2025', stars: 5, quote: 'Genuinely the most peaceful stay we have had in the Ghats. Thoughtful host, immaculate home, and that first-rain Mungaru magic.' },
+  { name: 'Chetan G.', place: 'Bengaluru', date: 'Jun 2026', stars: 5, quote: 'Woke up to clouds rolling through the valley. The whole house to ourselves, spotless, and the host guided us to a sunrise trek. Already planning our return.' },
+  { name: 'Bhavana & Suhas S.', place: 'Mangaluru', date: 'May 2026', stars: 5, quote: 'The monsoon view from the backyard is unreal. Hot water, full kitchen, fast Wi-Fi — wild outside, completely comfortable inside.' },
+  { name: 'Manjunath H.', place: 'Shivamogga', date: 'Apr 2026', stars: 5, quote: 'Perfect base for Ettina Bhuja and Kudremukh. Quiet, private, and the directions on WhatsApp made everything effortless.' },
+  { name: 'Deepa B.', place: 'Udupi', date: 'Mar 2026', stars: 5, quote: 'Came for a digital detox, left recharged. Birdsong, rain, coffee on the veranda. The photos do not do the green justice.' },
+  { name: 'Vinay K.', place: 'Hubballi', date: 'Feb 2026', stars: 5, quote: 'Booked the whole place for a family of nine. Everyone had space, the kids loved the hall, and the power backup held through a storm.' },
+  { name: 'Anitha R.', place: 'Mysuru', date: 'Jan 2026', stars: 5, quote: 'Genuinely the most peaceful stay we have had in the Ghats. Thoughtful host, immaculate home, and that first-rain Mungaru magic.' },
 ];
 
 export type Faq = { q: string; a: string };
