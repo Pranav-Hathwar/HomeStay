@@ -1,5 +1,6 @@
 import { motion, useReducedMotion } from 'framer-motion';
 import scenery from '../assets/mudigere5.webp';
+import { useAfterPaint } from '../hooks/useAfterPaint';
 
 /**
  * The cinematic backdrop the whole site sits on: a real misty Malnad valley
@@ -9,6 +10,7 @@ import scenery from '../assets/mudigere5.webp';
  */
 export default function SceneryBackground() {
   const reduce = useReducedMotion();
+  const ready = useAfterPaint();
 
   return (
     <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden" aria-hidden="true">
@@ -25,8 +27,10 @@ export default function SceneryBackground() {
         transition={reduce ? undefined : { duration: 64, repeat: Infinity, ease: 'easeInOut' }}
       />
 
-      {/* fog banks drifting across the hills (visible cloud motion) */}
-      {!reduce &&
+      {/* fog banks drifting across the hills (visible cloud motion) — deferred
+          past first paint so their heavy blur doesn't inflate LCP */}
+      {ready &&
+        !reduce &&
         [0, 1, 2, 3].map((i) => (
           <motion.div
             key={i}
@@ -48,7 +52,8 @@ export default function SceneryBackground() {
           />
         ))}
 
-      {/* low rising ground mist */}
+      {/* low rising ground mist (deferred past first paint) */}
+      {ready && (
       <motion.div
         className="absolute inset-x-0 bottom-0 h-1/3"
         style={{
@@ -60,6 +65,7 @@ export default function SceneryBackground() {
         animate={reduce ? undefined : { y: ['6%', '-4%', '6%'], opacity: [0.5, 0.85, 0.5] }}
         transition={reduce ? undefined : { duration: 30, repeat: Infinity, ease: 'easeInOut' }}
       />
+      )}
 
       {/* colour grade + readability veil */}
       <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(10,15,12,0.74),rgba(12,20,15,0.5)_42%,rgba(10,15,12,0.9))]" />

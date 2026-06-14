@@ -88,10 +88,10 @@ export default function Hero() {
       <MistBackground mountains intensity="subtle" />
 
       <div className="relative mx-auto grid min-h-[100svh] w-full max-w-7xl grid-cols-1 items-center gap-10 px-4 pb-24 pt-28 lg:grid-cols-[1fr_120px] lg:px-8">
-        <motion.div className="max-w-3xl" style={{ y: textY, opacity: textOpacity }}>
+        <motion.div className="min-w-0 max-w-3xl" style={{ y: textY, opacity: textOpacity }}>
           <motion.p
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{ y: 12 }}
+            animate={{ y: 0 }}
             transition={{ duration: 0.7, delay: 0.1 }}
             className="mb-5 text-xs uppercase tracking-[0.3em] text-gold-bright sm:text-sm"
           >
@@ -103,10 +103,10 @@ export default function Hero() {
             style={{ textShadow: '0 2px 28px rgba(6,10,8,0.55)' }}
           >
             {HEADLINE.map((word, i) => (
-              <span key={i} className="mr-[0.25em] inline-block overflow-hidden align-bottom">
+              <span key={i} className="mr-[0.25em] inline-block align-bottom">
                 <motion.span
                   className="inline-block"
-                  initial={{ y: '110%' }}
+                  initial={{ y: 18 }}
                   animate={{ y: 0 }}
                   transition={{ duration: 0.7, delay: 0.05 + i * 0.07, ease: [0.16, 1, 0.3, 1] }}
                 >
@@ -117,9 +117,7 @@ export default function Hero() {
           </h1>
 
           <motion.p
-            initial={{ opacity: 0, y: 14 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
+            initial={false}
             className="mt-6 max-w-xl text-base text-dim sm:text-lg md:text-xl"
             style={{ textShadow: '0 1px 18px rgba(6,10,8,0.6)' }}
           >
@@ -128,30 +126,30 @@ export default function Hero() {
           </motion.p>
 
           <motion.div
-            initial={{ opacity: 0, y: 14 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{ y: 14 }}
+            animate={{ y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="mt-9 flex flex-wrap gap-4"
+            className="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-4"
           >
             <MagneticButton
               href="#book"
               spotlight
-              className="group inline-flex items-center gap-2 rounded-full border border-gold/70 bg-gold/15 px-6 py-3.5 text-sm font-semibold text-gold-bright shadow-glow transition-colors hover:bg-gold/25"
+              className="group inline-flex w-full items-center justify-center gap-2 rounded-full border border-gold/70 bg-gold/15 px-6 py-3.5 text-sm font-semibold text-gold-bright shadow-glow transition-colors hover:bg-gold/25 sm:w-auto"
             >
               Check Availability
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
             </MagneticButton>
             <MagneticButton
               href="#explore"
-              className="inline-flex items-center gap-2 rounded-full border border-line/60 bg-ink/30 px-6 py-3.5 text-sm font-semibold text-fog backdrop-blur transition-colors hover:bg-white/5"
+              className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-line/60 bg-ink/30 px-6 py-3.5 text-sm font-semibold text-fog backdrop-blur transition-colors hover:bg-white/5 sm:w-auto"
             >
               <Compass className="h-4 w-4" /> Explore Nearby
             </MagneticButton>
           </motion.div>
 
           <motion.p
-            initial={{ opacity: 0, y: 14 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{ y: 14 }}
+            animate={{ y: 0 }}
             transition={{ duration: 0.6, delay: 0.55 }}
             className="mt-5 text-sm text-dim"
           >

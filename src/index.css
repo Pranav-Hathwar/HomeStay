@@ -13,9 +13,12 @@
 }
 
 html { scroll-behavior: smooth; }
-body { margin: 0; min-width: 320px; background: #0a0f0c; }
+body { margin: 0; min-width: 320px; background: #0a0f0c; overflow-x: hidden; }
 * { box-sizing: border-box; }
 ::selection { background: rgba(201,168,106,.25); color: #fff; }
+
+/* Remove the 300ms tap delay and double-tap zoom on interactive elements. */
+a, button, input, select, textarea, [role='button'] { touch-action: manipulation; }
 
 /* Visible, consistent keyboard focus everywhere (mouse clicks stay clean). */
 :focus-visible {

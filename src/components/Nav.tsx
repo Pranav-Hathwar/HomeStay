@@ -109,7 +109,7 @@ export default function Nav() {
             onClick={() => setOpen(true)}
             aria-label="Open menu"
             aria-expanded={open}
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-line/60 lg:hidden"
+            className="flex h-11 w-11 items-center justify-center rounded-full border border-line/60 lg:hidden"
           >
             <span className="relative block h-3 w-5">
               <span className="absolute left-0 top-0 h-0.5 w-full rounded bg-fog" />

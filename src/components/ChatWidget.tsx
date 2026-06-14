@@ -167,7 +167,7 @@ export default function ChatWidget() {
               <button
                 type="submit"
                 aria-label="Send message"
-                className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-gold/70 bg-gold/20 text-gold-bright transition hover:bg-gold/30"
+                className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-gold/70 bg-gold/20 text-gold-bright transition hover:bg-gold/30"
               >
                 <Send className="h-4 w-4" />
               </button>

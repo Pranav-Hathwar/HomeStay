@@ -74,7 +74,7 @@ export default function Footer() {
               target="_blank"
               rel="noreferrer"
               aria-label="Instagram"
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-line/60 text-fog transition hover:border-gold/50 hover:text-gold-bright"
+              className="flex h-11 w-11 items-center justify-center rounded-full border border-line/60 text-fog transition hover:border-gold/50 hover:text-gold-bright"
             >
               <Instagram className="h-4 w-4" />
             </a>
@@ -83,7 +83,7 @@ export default function Footer() {
               target="_blank"
               rel="noreferrer"
               aria-label="WhatsApp"
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-line/60 text-fog transition hover:border-gold/50 hover:text-gold-bright"
+              className="flex h-11 w-11 items-center justify-center rounded-full border border-line/60 text-fog transition hover:border-gold/50 hover:text-gold-bright"
             >
               <MessageCircle className="h-4 w-4" />
             </a>
@@ -92,7 +92,7 @@ export default function Footer() {
               target="_blank"
               rel="noreferrer"
               aria-label="Open in Google Maps"
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-line/60 text-fog transition hover:border-gold/50 hover:text-gold-bright"
+              className="flex h-11 w-11 items-center justify-center rounded-full border border-line/60 text-fog transition hover:border-gold/50 hover:text-gold-bright"
             >
               <Map className="h-4 w-4" />
             </a>
