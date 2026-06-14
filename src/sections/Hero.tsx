@@ -26,12 +26,20 @@ export default function Hero() {
 
   return (
     <section ref={ref} className="relative flex min-h-[100svh] items-center overflow-hidden border-b border-line/40">
-      {/* crossfading Ken-Burns slides */}
+      {/* crossfading Ken-Burns slides — PC only (phone/tablet use a simple static background) */}
       <div className="absolute inset-0">
+        {/* simple static background for phone + tablet (no images, glitch-free) */}
+        <div
+          className="absolute inset-0 lg:hidden"
+          style={{
+            background:
+              'radial-gradient(120% 90% at 70% 20%, rgba(28,46,33,0.95), rgba(8,12,9,0.98) 70%), linear-gradient(180deg, #0d140f 0%, #080c09 100%)',
+          }}
+        />
         {heroImages.map((img, i) => (
           <motion.div
             key={img.src}
-            className="absolute inset-0 bg-cover bg-center"
+            className="absolute inset-0 hidden bg-cover bg-center lg:block"
             style={{
               backgroundImage: `url(${img.src})`,
               filter: 'brightness(1.06) saturate(1.32) contrast(1.12)',
@@ -162,8 +170,8 @@ export default function Hero() {
           </motion.p>
         </motion.div>
 
-        {/* slide counter + progress */}
-        <div className="flex items-end justify-start lg:items-center lg:justify-center">
+        {/* slide counter + progress — PC only */}
+        <div className="hidden items-end justify-start lg:flex lg:items-center lg:justify-center">
           <div className="glass rounded-3xl p-4">
             <div className="text-right font-display text-lg tracking-[0.2em] text-fog">
               0{active + 1}
