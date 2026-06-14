@@ -34,7 +34,7 @@ export default function Hero() {
             className="absolute inset-0 bg-cover bg-center"
             style={{
               backgroundImage: `url(${img.src})`,
-              filter: 'brightness(1.15) saturate(1.06)',
+              filter: 'brightness(1.06) saturate(1.32) contrast(1.12)',
               willChange: 'transform, opacity',
             }}
             initial={false}
@@ -47,8 +47,41 @@ export default function Hero() {
             aria-label={img.alt}
           />
         ))}
-        <div className="absolute inset-0 bg-[linear-gradient(115deg,rgba(10,15,12,0.72),rgba(10,15,12,0.22)_45%,rgba(10,15,12,0.78))]" />
-        <div className="absolute inset-0 bg-[radial-gradient(120%_80%_at_50%_120%,rgba(10,15,12,0.62),transparent)]" />
+        {/* warm sunrise bloom — adds golden light instead of darkening (screen blend) */}
+        <div
+          className="absolute inset-0 mix-blend-screen"
+          style={{
+            background:
+              'radial-gradient(65% 55% at 82% 14%, rgba(227,201,140,0.24), rgba(227,201,140,0.06) 42%, transparent 66%)',
+          }}
+        />
+        {/* left scrim — protects the headline/subtitle, lets the right of the photo shine */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              'linear-gradient(96deg, rgba(8,12,9,0.86) 0%, rgba(8,12,9,0.55) 30%, rgba(8,12,9,0.18) 55%, rgba(8,12,9,0) 80%)',
+          }}
+        />
+        {/* grounding vignette at the base + soft top fade for the nav */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              'linear-gradient(0deg, rgba(8,12,9,0.82) 0%, rgba(8,12,9,0.2) 30%, transparent 52%)',
+          }}
+        />
+        <div
+          className="absolute inset-0"
+          style={{ background: 'linear-gradient(180deg, rgba(8,12,9,0.5) 0%, transparent 16%)' }}
+        />
+        {/* gentle cinematic corner vignette for depth */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background: 'radial-gradient(125% 105% at 50% 42%, transparent 52%, rgba(6,10,8,0.55) 100%)',
+          }}
+        />
       </div>
 
       {/* signature cloudy-mountain mist over the hero — kept light so the photo stays clear */}
@@ -65,14 +98,17 @@ export default function Hero() {
             Gowdahalli Horati · Mudigere · 906m
           </motion.p>
 
-          <h1 className="font-display text-[3.2rem] font-semibold leading-[0.92] tracking-tight text-fog sm:text-7xl lg:text-8xl">
+          <h1
+            className="font-display text-[3.2rem] font-semibold leading-[0.92] tracking-tight text-fog sm:text-7xl lg:text-8xl"
+            style={{ textShadow: '0 2px 28px rgba(6,10,8,0.55)' }}
+          >
             {HEADLINE.map((word, i) => (
               <span key={i} className="mr-[0.25em] inline-block overflow-hidden align-bottom">
                 <motion.span
                   className="inline-block"
                   initial={{ y: '110%' }}
                   animate={{ y: 0 }}
-                  transition={{ duration: 0.85, delay: 0.25 + i * 0.1, ease: [0.16, 1, 0.3, 1] }}
+                  transition={{ duration: 0.7, delay: 0.05 + i * 0.07, ease: [0.16, 1, 0.3, 1] }}
                 >
                   {word === 'mist.' ? <em className="not-italic text-gold-bright">{word}</em> : word}
                 </motion.span>
@@ -83,8 +119,9 @@ export default function Hero() {
           <motion.p
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.9 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
             className="mt-6 max-w-xl text-base text-dim sm:text-lg md:text-xl"
+            style={{ textShadow: '0 1px 18px rgba(6,10,8,0.6)' }}
           >
             A quiet Malnad cottage above the coffee country — green views, hot-water baths,
             a full kitchen, and the slow rhythm of monsoon mornings.
@@ -93,7 +130,7 @@ export default function Hero() {
           <motion.div
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1.05 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
             className="mt-9 flex flex-wrap gap-4"
           >
             <MagneticButton
@@ -115,7 +152,7 @@ export default function Hero() {
           <motion.p
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1.2 }}
+            transition={{ duration: 0.6, delay: 0.55 }}
             className="mt-5 text-sm text-dim"
           >
             {hasPrice && (

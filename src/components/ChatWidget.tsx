@@ -80,6 +80,19 @@ export default function ChatWidget() {
       <AnimatePresence>
         {open && (
           <motion.div
+            key="chat-backdrop"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.25 }}
+            onClick={() => setOpen(false)}
+            aria-hidden="true"
+            className="fixed inset-0 z-[60] bg-ink/40 backdrop-blur-sm"
+          />
+        )}
+        {open && (
+          <motion.div
+            key="chat-panel"
             role="dialog"
             aria-label="Chat with Mungaru Homestays"
             initial={{ opacity: 0, y: 24, scale: 0.98 }}

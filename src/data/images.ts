@@ -34,10 +34,11 @@ export const property = {
   bathroom: bathroom,
 } as const;
 
-// Three atmosphere shots for the hero crossfade slider.
+// Four shots for the hero crossfade slider.
 export const heroImages: { src: string; alt: string }[] = [
-  { src: mudigere1, alt: 'Misty sunrise over the fields at Mungaru Homestays' },
+  { src: mudigere4, alt: 'The cottage and its terracotta-tiled roof under a monsoon sky' },
   { src: mudigere5, alt: 'A foggy meadow path winding into the green' },
+  { src: mudigere2, alt: 'The Malnad cottage exterior under its terracotta roof' },
   { src: mudigere6, alt: 'Veranda outlook across the Malnad valley at dawn' },
 ];
 
