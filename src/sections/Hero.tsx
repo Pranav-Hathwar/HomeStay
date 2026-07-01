@@ -1,10 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
 import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
-import { ArrowRight, Compass, MousePointer2 } from 'lucide-react';
+import { ArrowRight, Compass, Flame, MousePointer2 } from 'lucide-react';
 import MistBackground from '../components/MistBackground';
 import MagneticButton from '../components/MagneticButton';
 import { heroImages } from '../data/images';
-import { siteConfig } from '../data/site';
 
 const HEADLINE = ['Wake', 'up', 'in', 'the', 'mist.'];
 const SLIDE_MS = 5500;
@@ -13,7 +12,6 @@ export default function Hero() {
   const reduce = useReducedMotion();
   const [active, setActive] = useState(0);
   const ref = useRef<HTMLElement>(null);
-  const hasPrice = siteConfig.pricePerNight && !siteConfig.pricePerNight.includes('_');
 
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] });
   const textY = useTransform(scrollYProgress, [0, 1], reduce ? ['0%', '0%'] : ['0%', '40%']);
@@ -155,24 +153,39 @@ export default function Hero() {
             </MagneticButton>
           </motion.div>
 
-          <motion.p
+          <motion.div
             initial={{ y: 14 }}
             animate={{ y: 0 }}
             transition={{ duration: 0.6, delay: 0.55 }}
-            className="mt-5 text-sm text-dim"
+            className="mt-6 flex flex-wrap items-center gap-x-2.5 gap-y-1.5 text-sm text-dim"
           >
-            {hasPrice && (
-              <>
-                from <span className="font-display text-base text-fog">₹{siteConfig.pricePerNight}</span> / night ·{' '}
-              </>
-            )}
-            Entire home · sleeps 8–10
-          </motion.p>
+            <span className="font-medium text-fog">Entire home</span>
+            <span className="text-line">·</span>
+            <span>Sleeps 8–10</span>
+            <span className="text-line">·</span>
+            <span>Whole place, your group only</span>
+          </motion.div>
+
+          {/* on-site caretaker note — bonfire + food runs, billed at actuals */}
+          <motion.div
+            initial={{ y: 14 }}
+            animate={{ y: 0 }}
+            transition={{ duration: 0.6, delay: 0.65 }}
+            className="glass mt-5 flex max-w-xl items-start gap-3 rounded-2xl px-4 py-3.5 shadow-[0_8px_30px_rgba(6,10,8,0.35)]"
+          >
+            <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-gold/40 bg-gold/15">
+              <Flame className="h-3.5 w-3.5 text-gold-bright" />
+            </span>
+            <p className="text-xs leading-relaxed text-dim sm:text-[0.82rem]">
+              <span className="font-medium text-fog">A caretaker is on hand</span> to set up your bonfire and
+              make food runs — the nearest town is ~20 km away. Fuel, their meals and any extras are billed at actuals.
+            </p>
+          </motion.div>
         </motion.div>
 
         {/* slide counter + progress — PC only */}
         <div className="hidden items-end justify-start lg:flex lg:items-center lg:justify-center">
-          <div className="glass rounded-3xl p-4">
+          <div className="glass-strong rounded-3xl p-4 shadow-[0_10px_40px_rgba(6,10,8,0.4)]">
             <div className="text-right font-display text-lg tracking-[0.2em] text-fog">
               0{active + 1}
               <span className="text-dim"> / 0{heroImages.length}</span>

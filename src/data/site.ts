@@ -20,7 +20,7 @@ export const siteConfig = {
   email: 'pranav4hathwar@gmail.com',       // <EMAIL>
   airbnbUrl: 'https://www.airbnb.co.in/', // <AIRBNB_LISTING_URL>
   instagramUrl: 'https://instagram.com/', // <INSTAGRAM_URL>
-  pricePerNight: '600 per person',            // <PRICE> e.g. '4,500' — shown as "from ₹4,500 / night"
+  pricePerNight: '',                          // intentionally blank — price is NOT shown on the site (approx ₹800 per person; quote on WhatsApp)
   siteUrl: 'https://home-stay-two.vercel.app', // <SITE_URL> canonical/OG/sitemap base, no trailing slash
   ogImage: '/og-image.jpg',         // <OG_IMAGE> 1200×630, placed in /public
   // ──────────────────────────────────────────────────────────────────────────
