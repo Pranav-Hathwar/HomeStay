@@ -51,4 +51,24 @@ a, button, input, select, textarea, [role='button'] { touch-action: manipulation
   .glass-strong {
     @apply border border-line/40 bg-ink/70 backdrop-blur-xl;
   }
+
+  /* Canonical card surface — one recipe for every framed panel on the site.
+     The hairline inset gives a crisp top-edge highlight against the dark bg. */
+  .card {
+    @apply rounded-card border border-line/60 bg-card/90 shadow-hairline transition-colors duration-300;
+  }
+  /* Companion for interactive cards: warms the border + adds a soft gold glow. */
+  .card-hover {
+    @apply hover:border-gold/40 hover:shadow-glow-sm;
+  }
+
+  /* Section kicker — the small gold label above every heading. */
+  .eyebrow {
+    @apply text-xs font-medium uppercase tracking-[0.3em] text-gold-bright sm:text-sm;
+  }
+
+  /* Small pill for stats, meta rows and badges. */
+  .chip {
+    @apply inline-flex items-center gap-1.5 rounded-pill border border-line/60 bg-ink/40 px-3 py-1 text-xs text-dim backdrop-blur;
+  }
 }

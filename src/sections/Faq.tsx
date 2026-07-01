@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Plus } from 'lucide-react';
-import Reveal from '../components/Reveal';
-import Parallax from '../components/Parallax';
+import Section from '../components/Section';
+import SectionHeading from '../components/SectionHeading';
 import { FAQS } from '../data/site';
 import { EASE } from '../motion';
 
@@ -10,18 +10,10 @@ export default function Faq() {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
-    <section id="faq" className="relative border-y border-line/40 bg-forest/30 backdrop-blur-md py-20 lg:py-28">
-      <div className="mx-auto max-w-3xl px-4 lg:px-8">
-        <Parallax distance={30}>
-          <Reveal>
-            <p className="text-sm uppercase tracking-[0.35em] text-gold-bright">FAQ</p>
-            <h2 className="mt-3 text-balance font-display text-4xl leading-tight tracking-tight text-fog md:text-5xl">
-              Good to know before you come.
-            </h2>
-          </Reveal>
-        </Parallax>
+    <Section id="faq" tone="band" divider width="narrow">
+      <SectionHeading eyebrow="FAQ" title="Good to know before you come." />
 
-        <div className="mt-10 divide-y divide-line/40 border-y border-line/40">
+      <div className="mt-10 divide-y divide-line/40 border-y border-line/40">
           {FAQS.map((f, i) => {
             const isOpen = open === i;
             return (
@@ -61,7 +53,6 @@ export default function Faq() {
             );
           })}
         </div>
-      </div>
-    </section>
+    </Section>
   );
 }

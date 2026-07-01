@@ -99,7 +99,7 @@ export default function Hero() {
             initial={{ y: 12 }}
             animate={{ y: 0 }}
             transition={{ duration: 0.7, delay: 0.1 }}
-            className="mb-5 text-xs uppercase tracking-[0.3em] text-gold-bright sm:text-sm"
+            className="eyebrow mb-5"
           >
             Gowdahalli Horati · Mudigere · 906m
           </motion.p>

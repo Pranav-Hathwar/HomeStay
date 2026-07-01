@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { Home, Users, ParkingCircle, Mountain, MessageCircle, ExternalLink, ArrowRight } from 'lucide-react';
 import Reveal from '../components/Reveal';
 import Parallax from '../components/Parallax';
+import Section from '../components/Section';
 import { siteConfig, whatsappUrl, bookingMessage } from '../data/site';
 
 const PERKS = [
@@ -40,12 +41,10 @@ export default function Book() {
   }
 
   return (
-    <section id="book" className="relative overflow-hidden border-y border-line/40 bg-forest/30 backdrop-blur-md py-20 lg:py-28">
-      <div className="relative mx-auto max-w-7xl px-4 lg:px-8">
-        <div className="grid gap-10 lg:grid-cols-[1fr_0.9fr] lg:items-center">
+    <Section id="book" tone="band" divider containerClassName="grid gap-10 lg:grid-cols-[1fr_0.9fr] lg:items-center">
           <Parallax distance={28}>
            <Reveal>
-            <p className="text-sm uppercase tracking-[0.35em] text-gold-bright">Book</p>
+            <p className="eyebrow">Book</p>
             <h2 className="mt-3 text-balance font-display text-4xl leading-tight tracking-tight text-fog md:text-5xl">
               Check availability.
             </h2>
@@ -70,7 +69,7 @@ export default function Book() {
             <motion.form
               layout
               onSubmit={handleSubmit}
-              className="rounded-[28px] border border-line/60 bg-card/90 p-6 shadow-glow backdrop-blur md:p-8"
+              className="rounded-card-lg border border-line/60 bg-card/90 p-6 shadow-glow backdrop-blur md:p-8"
             >
               <div className="grid gap-4 sm:grid-cols-2">
                 <div>
@@ -161,8 +160,6 @@ export default function Book() {
               </div>
             </motion.form>
           </Reveal>
-        </div>
-      </div>
-    </section>
+    </Section>
   );
 }

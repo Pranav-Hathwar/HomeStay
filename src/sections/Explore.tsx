@@ -1,6 +1,7 @@
 import { useState, lazy, Suspense } from 'react';
 import Reveal from '../components/Reveal';
-import Parallax from '../components/Parallax';
+import Section from '../components/Section';
+import SectionHeading from '../components/SectionHeading';
 import Carousel3D from '../components/Carousel3D';
 import { ATTRACTIONS, type Attraction, directionsUrl, embedDirectionsUrl } from '../data/site';
 
@@ -22,18 +23,12 @@ export default function Explore() {
   }
 
   return (
-    <section id="explore" className="mx-auto max-w-7xl px-4 py-20 lg:px-8 lg:py-28">
-      <Parallax distance={36}>
-        <Reveal>
-          <p className="text-sm uppercase tracking-[0.35em] text-gold-bright">Explore Mudigere</p>
-          <h2 className="mt-3 max-w-2xl text-balance font-display text-4xl leading-tight tracking-tight text-fog md:text-5xl">
-            Trails, peaks and temples — all from one doorstep.
-          </h2>
-          <p className="mt-3 max-w-xl text-dim">
-            Drag through the places nearby, then tap one to draw directions from the homestay.
-          </p>
-        </Reveal>
-      </Parallax>
+    <Section id="explore">
+      <SectionHeading
+        eyebrow="Explore Mudigere"
+        title="Trails, peaks and temples — all from one doorstep."
+        intro="Drag through the places nearby, then tap one to draw directions from the homestay."
+      />
 
       {/* A) 3D depth carousel */}
       <Reveal delay={0.1} className="mt-12">
@@ -44,7 +39,7 @@ export default function Explore() {
       <Reveal delay={0.1} className="mt-16">
         <div className="grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
           <div>
-            <p className="text-sm uppercase tracking-[0.35em] text-gold-bright">From your doorstep</p>
+            <p className="eyebrow">From your doorstep</p>
             <h3 className="mt-3 font-display text-3xl tracking-tight text-fog md:text-4xl">
               A dotted path through the valley.
             </h3>
@@ -53,7 +48,7 @@ export default function Explore() {
               driving route to that spot.
             </p>
           </div>
-          <div className="overflow-hidden rounded-[32px] border border-line/50 bg-forest/70 p-4 shadow-glow">
+          <div className="overflow-hidden rounded-card-lg border border-line/50 bg-forest/70 p-4 shadow-glow">
             <div className="h-[320px] w-full md:h-[380px]">
               <Suspense fallback={<div className="h-full w-full animate-pulse rounded-2xl bg-moss/30" />}>
                 <RouteMap attractions={ATTRACTIONS} onSelect={handleSelect} />
@@ -66,6 +61,6 @@ export default function Explore() {
       <Suspense fallback={null}>
         <MapModal attraction={selected} onClose={() => setSelected(null)} />
       </Suspense>
-    </section>
+    </Section>
   );
 }

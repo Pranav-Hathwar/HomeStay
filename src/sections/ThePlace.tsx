@@ -2,6 +2,7 @@ import { useRef } from 'react';
 import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion';
 import { MapPin } from 'lucide-react';
 import Reveal from '../components/Reveal';
+import Section from '../components/Section';
 import MistBackground from '../components/MistBackground';
 import { property } from '../data/images';
 import { siteConfig } from '../data/site';
@@ -13,13 +14,12 @@ export default function ThePlace() {
   const imgY = useTransform(scrollYProgress, [0, 1], reduce ? ['0%', '0%'] : ['-10%', '10%']);
 
   return (
-    <section id="the-place" className="relative overflow-hidden">
-      <div className="mx-auto grid max-w-7xl items-center gap-10 px-4 py-20 lg:grid-cols-2 lg:px-8 lg:py-28">
+    <Section id="the-place" containerClassName="grid items-center gap-10 lg:grid-cols-2">
         {/* parallax image with drifting fog */}
         <Reveal>
           <div
             ref={ref}
-            className="relative overflow-hidden rounded-[32px] border border-line/50 bg-card shadow-glow"
+            className="relative overflow-hidden rounded-card-lg border border-line/50 bg-card shadow-glow"
           >
             <div className="relative h-[380px] overflow-hidden md:h-[520px]">
               <motion.img
@@ -40,7 +40,7 @@ export default function ThePlace() {
 
         <div className="flex flex-col gap-5">
           <Reveal>
-            <p className="text-sm uppercase tracking-[0.35em] text-gold-bright">The Place</p>
+            <p className="eyebrow">The Place</p>
           </Reveal>
           <Reveal delay={0.05}>
             <h2 className="font-display text-4xl leading-tight tracking-tight text-fog md:text-5xl">
@@ -63,7 +63,6 @@ export default function ThePlace() {
             </p>
           </Reveal>
         </div>
-      </div>
-    </section>
+    </Section>
   );
 }

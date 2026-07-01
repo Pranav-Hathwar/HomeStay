@@ -1,7 +1,8 @@
 import { useState, lazy, Suspense } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import { Expand } from 'lucide-react';
-import Reveal from '../components/Reveal';
+import Section from '../components/Section';
+import SectionHeading from '../components/SectionHeading';
 import { galleryImages } from '../data/images';
 import { EASE } from '../motion';
 
@@ -24,13 +25,8 @@ export default function Gallery() {
   const reduce = useReducedMotion();
 
   return (
-    <section id="gallery" className="mx-auto max-w-7xl px-4 py-20 lg:px-8 lg:py-28">
-      <Reveal>
-        <p className="text-sm uppercase tracking-[0.35em] text-gold-bright">Gallery</p>
-        <h2 className="mt-3 text-balance font-display text-4xl leading-tight tracking-tight text-fog md:text-5xl">
-          A look around.
-        </h2>
-      </Reveal>
+    <Section id="gallery">
+      <SectionHeading eyebrow="Gallery" title="A look around." />
 
       <div className="mt-10 grid auto-rows-[180px] grid-cols-2 gap-4 sm:auto-rows-[200px] sm:grid-cols-3 lg:grid-cols-4">
         {galleryImages.map((img, i) => (
@@ -42,13 +38,13 @@ export default function Gallery() {
             transition={{ duration: 0.5, delay: (i % 4) * 0.06, ease: EASE }}
             onClick={() => setOpen(i)}
             aria-label={`Open image: ${img.alt}`}
-            className={`group relative overflow-hidden rounded-[24px] border border-line/50 bg-card ${
+            className={`group relative overflow-hidden rounded-card border border-line/50 bg-card ${
               SPANS[i % SPANS.length]
             }`}
           >
             {/* Inner zoom wrapper keeps the hover transform off the layout element
                 so it can't fight the shared-layout morph into the lightbox. */}
-            <div className="absolute inset-0 overflow-hidden rounded-[24px]">
+            <div className="absolute inset-0 overflow-hidden rounded-card">
               <motion.img
                 layoutId={reduce ? undefined : `tile-${i}`}
                 src={img.src}
@@ -68,6 +64,6 @@ export default function Gallery() {
       <Suspense fallback={null}>
         <Lightbox images={galleryImages} index={open} onClose={() => setOpen(null)} onIndex={setOpen} />
       </Suspense>
-    </section>
+    </Section>
   );
 }

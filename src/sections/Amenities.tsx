@@ -13,8 +13,8 @@ import {
   CircleParking,
   type LucideIcon,
 } from 'lucide-react';
-import Reveal from '../components/Reveal';
-import Parallax from '../components/Parallax';
+import Section from '../components/Section';
+import SectionHeading from '../components/SectionHeading';
 import { AMENITIES } from '../data/site';
 import { EASE } from '../motion';
 
@@ -51,21 +51,14 @@ const FEATURED: Record<string, { span: string; blurb: string }> = {
 
 export default function Amenities() {
   return (
-    <section className="relative border-y border-line/40 bg-moss/25 backdrop-blur-md py-20 lg:py-28">
-      <div className="mx-auto max-w-7xl px-4 lg:px-8">
-        <Parallax distance={36}>
-          <Reveal>
-            <p className="text-sm uppercase tracking-[0.35em] text-gold-bright">Amenities</p>
-            <h2 className="mt-3 max-w-2xl text-balance font-display text-4xl leading-tight tracking-tight text-fog md:text-5xl">
-              Everything you need, nothing you don't.
-            </h2>
-            <p className="mt-3 text-sm text-dim">
-              No air conditioning — at 906&nbsp;m the mountain air does the job.
-            </p>
-          </Reveal>
-        </Parallax>
+    <Section tone="band" divider>
+      <SectionHeading
+        eyebrow="Amenities"
+        title="Everything you need, nothing you don't."
+        intro="No air conditioning — at 906 m the mountain air does the job."
+      />
 
-        <div className="mt-10 grid auto-rows-[112px] grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
+      <div className="mt-10 grid auto-rows-[112px] grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
           {AMENITIES.map((name, i) => {
             const Icon = ICONS[name] ?? Wifi;
             const feat = FEATURED[name];
@@ -77,7 +70,7 @@ export default function Amenities() {
                 viewport={{ once: true, amount: 0.3 }}
                 transition={{ duration: 0.45, delay: (i % 4) * 0.06, ease: EASE }}
                 whileHover={{ y: -5 }}
-                className={`group relative flex flex-col justify-between overflow-hidden rounded-[24px] border border-line/60 bg-card/80 p-5 transition-colors hover:border-gold/40 hover:shadow-glow ${
+                className={`card card-hover group relative flex flex-col justify-between overflow-hidden p-5 ${
                   feat?.span ?? ''
                 }`}
               >
@@ -104,7 +97,6 @@ export default function Amenities() {
             );
           })}
         </div>
-      </div>
-    </section>
+    </Section>
   );
 }
