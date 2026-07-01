@@ -29,9 +29,15 @@ async function run() {
       continue;
     }
 
-    // Photos: cap long edge at 1600px and emit a WebP sibling.
+    // Photos: cap long edge at 2000px, gently sharpen to counter WebP softening
+    // (these are used as zoomed full-screen backgrounds, so crispness matters),
+    // and emit a high-quality WebP sibling.
     const out = join(ASSETS, `${name}.webp`);
-    await sharp(src).resize({ width: 1600, height: 1600, fit: 'inside', withoutEnlargement: true }).webp({ quality: 78 }).toFile(out);
+    await sharp(src)
+      .resize({ width: 2000, height: 2000, fit: 'inside', withoutEnlargement: true })
+      .sharpen({ sigma: 0.7 })
+      .webp({ quality: 90 })
+      .toFile(out);
     console.log(`photo ${kb(before)} -> ${kb((await stat(out)).size)}  (${name}.webp)`);
   }
 }

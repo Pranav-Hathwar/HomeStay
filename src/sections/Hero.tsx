@@ -1,58 +1,40 @@
-import { useEffect, useRef, useState } from 'react';
+import { useRef } from 'react';
 import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
 import { ArrowRight, Compass, Flame, MousePointer2 } from 'lucide-react';
 import MistBackground from '../components/MistBackground';
 import MagneticButton from '../components/MagneticButton';
-import { heroImages } from '../data/images';
 
 const HEADLINE = ['Wake', 'up', 'in', 'the', 'mist.'];
-const SLIDE_MS = 5500;
 
 export default function Hero() {
   const reduce = useReducedMotion();
-  const [active, setActive] = useState(0);
   const ref = useRef<HTMLElement>(null);
 
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] });
   const textY = useTransform(scrollYProgress, [0, 1], reduce ? ['0%', '0%'] : ['0%', '40%']);
   const textOpacity = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
 
-  useEffect(() => {
-    const t = setInterval(() => setActive((s) => (s + 1) % heroImages.length), SLIDE_MS);
-    return () => clearInterval(t);
-  }, []);
-
   return (
     <section ref={ref} className="relative flex min-h-[100svh] items-center overflow-hidden border-b border-line/40">
-      {/* crossfading Ken-Burns slides — PC only (phone/tablet use a simple static background) */}
+      {/* full-bleed looping video background — webm/mp4 with an instant poster
+          fallback; plays on mobile too (muted + playsInline). Static poster
+          under prefers-reduced-motion. */}
       <div className="absolute inset-0">
-        {/* simple static background for phone + tablet (no images, glitch-free) */}
-        <div
-          className="absolute inset-0 lg:hidden"
-          style={{
-            background:
-              'radial-gradient(120% 90% at 70% 20%, rgba(28,46,33,0.95), rgba(8,12,9,0.98) 70%), linear-gradient(180deg, #0d140f 0%, #080c09 100%)',
-          }}
-        />
-        {heroImages.map((img, i) => (
-          <motion.div
-            key={img.src}
-            className="absolute inset-0 hidden bg-cover bg-center lg:block"
-            style={{
-              backgroundImage: `url(${img.src})`,
-              filter: 'brightness(1.06) saturate(1.32) contrast(1.12)',
-              willChange: 'transform, opacity',
-            }}
-            initial={false}
-            animate={{
-              opacity: i === active ? 1 : 0,
-              scale: i === active ? (reduce ? 1 : 1.08) : 1,
-            }}
-            transition={{ opacity: { duration: 1.6, ease: 'easeInOut' }, scale: { duration: SLIDE_MS / 1000 + 1.6, ease: 'linear' } }}
-            role="img"
-            aria-label={img.alt}
-          />
-        ))}
+        <video
+          className="absolute inset-0 h-full w-full object-cover"
+          autoPlay={!reduce}
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          poster="/videos/hero-poster.jpg"
+          aria-hidden="true"
+          style={{ filter: 'brightness(1.02) saturate(1.08) contrast(1.05)' }}
+        >
+          <source src="/videos/hero-bg.webm" type="video/webm" />
+          <source src="/videos/hero-bg.mp4" type="video/mp4" />
+        </video>
+
         {/* warm sunrise bloom — adds golden light instead of darkening (screen blend) */}
         <div
           className="absolute inset-0 mix-blend-screen"
@@ -93,7 +75,7 @@ export default function Hero() {
       {/* signature cloudy-mountain mist over the hero — kept light so the photo stays clear */}
       <MistBackground mountains intensity="subtle" />
 
-      <div className="relative mx-auto grid min-h-[100svh] w-full max-w-7xl grid-cols-1 items-center gap-10 px-4 pb-24 pt-28 lg:grid-cols-[1fr_120px] lg:px-8">
+      <div className="relative mx-auto grid min-h-[100svh] w-full max-w-7xl grid-cols-1 items-center gap-10 px-4 pb-24 pt-28 lg:px-8">
         <motion.div className="min-w-0 max-w-3xl" style={{ y: textY, opacity: textOpacity }}>
           <motion.p
             initial={{ y: 12 }}
@@ -182,25 +164,6 @@ export default function Hero() {
             </p>
           </motion.div>
         </motion.div>
-
-        {/* slide counter + progress — PC only */}
-        <div className="hidden items-end justify-start lg:flex lg:items-center lg:justify-center">
-          <div className="glass-strong rounded-3xl p-4 shadow-[0_10px_40px_rgba(6,10,8,0.4)]">
-            <div className="text-right font-display text-lg tracking-[0.2em] text-fog">
-              0{active + 1}
-              <span className="text-dim"> / 0{heroImages.length}</span>
-            </div>
-            <div className="mt-3 h-1.5 w-24 overflow-hidden rounded-full bg-white/10">
-              <motion.div
-                key={active}
-                className="h-full rounded-full bg-gold-bright"
-                initial={{ width: '0%' }}
-                animate={{ width: '100%' }}
-                transition={{ duration: SLIDE_MS / 1000, ease: 'linear' }}
-              />
-            </div>
-          </div>
-        </div>
       </div>
 
       <motion.div

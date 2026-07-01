@@ -21,8 +21,8 @@ export default function SceneryBackground() {
         initial={false}
         animate={
           reduce
-            ? { scale: 1.15 }
-            : { scale: [1.15, 1.27, 1.15], x: ['-1.5%', '1.5%', '-1.5%'], y: ['0%', '-2.5%', '0%'] }
+            ? { scale: 1.04 }
+            : { scale: [1.04, 1.11, 1.04], x: ['-1.2%', '1.2%', '-1.2%'], y: ['0%', '-2%', '0%'] }
         }
         transition={reduce ? undefined : { duration: 64, repeat: Infinity, ease: 'easeInOut' }}
       />
@@ -67,11 +67,11 @@ export default function SceneryBackground() {
       />
       )}
 
-      {/* colour grade + readability veil */}
-      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(10,15,12,0.74),rgba(12,20,15,0.5)_42%,rgba(10,15,12,0.9))]" />
+      {/* colour grade + readability veil — kept lighter so the photo stays clear */}
+      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(10,15,12,0.6),rgba(12,20,15,0.36)_42%,rgba(10,15,12,0.82))]" />
       <div
         className="absolute inset-0 mix-blend-multiply"
-        style={{ background: 'radial-gradient(120% 95% at 50% 28%, rgba(26,44,33,0.25), rgba(10,15,12,0.72))' }}
+        style={{ background: 'radial-gradient(120% 95% at 50% 28%, rgba(26,44,33,0.18), rgba(10,15,12,0.6))' }}
       />
     </div>
   );

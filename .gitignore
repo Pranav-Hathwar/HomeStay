@@ -9,3 +9,8 @@ dist/
 Thumbs.db
 .vscode/
 .idea/
+.vercel
+.env*
+
+# Raw video source (compressed set lives in public/videos)
+/video/
