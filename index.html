@@ -63,6 +63,9 @@
     }
     </script>
 
+    <!-- Preload the hero poster — it's the LCP element (shown instantly under the video). -->
+    <link rel="preload" as="image" href="/videos/hero-poster.jpg" fetchpriority="high" />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <!-- Load fonts off the render-blocking path; display=swap shows fallback text immediately. -->
