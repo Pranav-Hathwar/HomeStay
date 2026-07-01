@@ -39,6 +39,19 @@ a, button, input, select, textarea, [role='button'] { touch-action: manipulation
   html { scroll-behavior: auto; }
 }
 
+/* Mobile smoothness: backdrop-filter (frosted glass) is one of the most
+   expensive things a phone GPU can do while scrolling — it re-samples the
+   blurred backdrop every frame. Below the lg breakpoint we drop it entirely;
+   the translucent background tints already carry the look. */
+@media (max-width: 1023px) {
+  [class*='backdrop-blur'],
+  .glass,
+  .glass-strong {
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+  }
+}
+
 /* Fraunces is a variable font with an optical-size axis — let large display
    cuts take the high-contrast forms automatically while body stays readable. */
 .font-display { font-optical-sizing: auto; }

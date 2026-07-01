@@ -6,12 +6,14 @@ import Section from '../components/Section';
 import MistBackground from '../components/MistBackground';
 import { property } from '../data/images';
 import { siteConfig } from '../data/site';
+import { useIsMobile } from '../hooks/useIsMobile';
 
 export default function ThePlace() {
   const reduce = useReducedMotion();
+  const isMobile = useIsMobile();
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'end start'] });
-  const imgY = useTransform(scrollYProgress, [0, 1], reduce ? ['0%', '0%'] : ['-10%', '10%']);
+  const imgY = useTransform(scrollYProgress, [0, 1], reduce || isMobile ? ['0%', '0%'] : ['-10%', '10%']);
 
   return (
     <Section id="the-place" containerClassName="grid items-center gap-10 lg:grid-cols-2">

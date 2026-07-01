@@ -1,6 +1,7 @@
 import { motion, useReducedMotion } from 'framer-motion';
 import scenery from '../assets/mudigere5.webp';
 import { useAfterPaint } from '../hooks/useAfterPaint';
+import { useIsMobile } from '../hooks/useIsMobile';
 
 /**
  * The cinematic backdrop the whole site sits on: a real misty Malnad valley
@@ -11,26 +12,31 @@ import { useAfterPaint } from '../hooks/useAfterPaint';
 export default function SceneryBackground() {
   const reduce = useReducedMotion();
   const ready = useAfterPaint();
+  const isMobile = useIsMobile();
+  // On phones we drop the Ken-Burns drift and the blurred, rAF-animated fog so
+  // scrolling stays smooth — just a static, colour-graded photo remains.
+  const still = reduce || isMobile;
 
   return (
     <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden" aria-hidden="true">
-      {/* misty valley photo — slow continuous Ken-Burns */}
+      {/* misty valley photo — slow continuous Ken-Burns (static on phones) */}
       <motion.div
         className="absolute inset-0 bg-cover bg-center"
         style={{ backgroundImage: `url(${scenery})`, willChange: 'transform' }}
         initial={false}
         animate={
-          reduce
+          still
             ? { scale: 1.04 }
             : { scale: [1.04, 1.11, 1.04], x: ['-1.2%', '1.2%', '-1.2%'], y: ['0%', '-2%', '0%'] }
         }
-        transition={reduce ? undefined : { duration: 64, repeat: Infinity, ease: 'easeInOut' }}
+        transition={still ? undefined : { duration: 64, repeat: Infinity, ease: 'easeInOut' }}
       />
 
       {/* fog banks drifting across the hills (visible cloud motion) — deferred
-          past first paint so their heavy blur doesn't inflate LCP */}
+          past first paint so their heavy blur doesn't inflate LCP; skipped on
+          phones (blur + rAF are the main scroll-jank source) */}
       {ready &&
-        !reduce &&
+        !still &&
         [0, 1, 2, 3].map((i) => (
           <motion.div
             key={i}
@@ -52,8 +58,8 @@ export default function SceneryBackground() {
           />
         ))}
 
-      {/* low rising ground mist (deferred past first paint) */}
-      {ready && (
+      {/* low rising ground mist (deferred past first paint; off on phones) */}
+      {ready && !still && (
       <motion.div
         className="absolute inset-x-0 bottom-0 h-1/3"
         style={{

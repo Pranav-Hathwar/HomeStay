@@ -6,6 +6,7 @@ import Nav from './components/Nav';
 import ScrollProgress from './components/ScrollProgress';
 import SceneryBackground from './components/SceneryBackground';
 import StickyBookBar from './components/StickyBookBar';
+import { useIsMobile } from './hooks/useIsMobile';
 
 // Deferred: not needed for first paint — split into their own chunks.
 const ChatWidget = lazy(() => import('./components/ChatWidget'));
@@ -24,10 +25,12 @@ import Footer from './sections/Footer';
 
 export default function App() {
   const reduce = useReducedMotion();
+  const isMobile = useIsMobile();
 
-  // Smooth scrolling (skipped when the user prefers reduced motion).
+  // Smooth scrolling — desktop only. On phones, native scrolling is already
+  // smooth and Lenis' rAF hijack fights touch momentum, causing the jank.
   useEffect(() => {
-    if (reduce) return;
+    if (reduce || isMobile) return;
     const lenis = new Lenis({ duration: 1.15, smoothWheel: true });
     let raf = 0;
     const loop = (time: number) => {
@@ -39,7 +42,7 @@ export default function App() {
       cancelAnimationFrame(raf);
       lenis.destroy();
     };
-  }, [reduce]);
+  }, [reduce, isMobile]);
 
   return (
     <div
@@ -60,8 +63,9 @@ export default function App() {
       {/* Cinematic misty-valley backdrop the whole site floats on */}
       <SceneryBackground />
 
-      {/* Film-grain texture overlay (pure CSS, fixed, non-interactive) */}
-      <div className="grain pointer-events-none fixed inset-0 z-[5]" aria-hidden="true" />
+      {/* Film-grain texture overlay — desktop only. The soft-light blend forces
+          a full-viewport repaint every scroll frame, which is costly on phones. */}
+      <div className="grain pointer-events-none fixed inset-0 z-[5] hidden lg:block" aria-hidden="true" />
 
       <ScrollProgress />
       <Nav />

@@ -1,18 +1,38 @@
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
 import { ArrowRight, Compass, Flame, MousePointer2 } from 'lucide-react';
 import MistBackground from '../components/MistBackground';
 import MagneticButton from '../components/MagneticButton';
+import { useIsMobile } from '../hooks/useIsMobile';
 
 const HEADLINE = ['Wake', 'up', 'in', 'the', 'mist.'];
 
 export default function Hero() {
   const reduce = useReducedMotion();
+  const isMobile = useIsMobile();
   const ref = useRef<HTMLElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const still = reduce || isMobile;
 
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] });
-  const textY = useTransform(scrollYProgress, [0, 1], reduce ? ['0%', '0%'] : ['0%', '40%']);
-  const textOpacity = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
+  const textY = useTransform(scrollYProgress, [0, 1], still ? ['0%', '0%'] : ['0%', '40%']);
+  const textOpacity = useTransform(scrollYProgress, [0, 0.6], still ? [1, 1] : [1, 0]);
+
+  // Pause the video once the hero scrolls out of view so it isn't decoding
+  // frames while the user reads the rest of the page (smoother + saves battery).
+  useEffect(() => {
+    const v = videoRef.current;
+    if (!v) return;
+    const io = new IntersectionObserver(
+      ([e]) => {
+        if (e.isIntersecting) v.play().catch(() => {});
+        else v.pause();
+      },
+      { threshold: 0.1 }
+    );
+    io.observe(v);
+    return () => io.disconnect();
+  }, []);
 
   return (
     <section ref={ref} className="relative flex min-h-[100svh] items-center overflow-hidden border-b border-line/40">
@@ -21,6 +41,7 @@ export default function Hero() {
           under prefers-reduced-motion. */}
       <div className="absolute inset-0">
         <video
+          ref={videoRef}
           className="absolute inset-0 h-full w-full object-cover"
           autoPlay={!reduce}
           muted

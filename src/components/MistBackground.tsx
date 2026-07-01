@@ -1,6 +1,7 @@
 import { useMemo } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import { useAfterPaint } from '../hooks/useAfterPaint';
+import { useIsMobile } from '../hooks/useIsMobile';
 
 /**
  * <MistBackground /> — the signature atmosphere of the site.
@@ -57,6 +58,7 @@ export default function MistBackground({
 }: Props) {
   const reduce = useReducedMotion();
   const ready = useAfterPaint();
+  const isMobile = useIsMobile();
   const mult = INTENSITY[intensity];
 
   // Stable cloud puffs for the layer drifting between the peaks.
@@ -75,8 +77,9 @@ export default function MistBackground({
   );
 
   // Decorative only — keep it out of the first paint so its many heavy blurred
-  // layers don't inflate LCP; it fades in once the browser is idle.
-  if (!ready) return null;
+  // layers don't inflate LCP; it fades in once the browser is idle. Skipped
+  // entirely on phones, where the animated blurs are a scroll-jank source.
+  if (!ready || isMobile) return null;
 
   return (
     <div
