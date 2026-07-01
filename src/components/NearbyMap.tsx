@@ -82,7 +82,7 @@ function PlaceMarker({ place, i }: { place: Place; i: number }) {
 }
 
 function PoiMarker({ poi, i }: { poi: Poi; i: number }) {
-  const { x, y } = project(poi.bearing, poi.dist, POI_OFFSET);
+  const { x, y } = project(poi.bearing + (poi.nudge ?? 0), poi.dist, POI_OFFSET);
   const Icon = POI_ICON[poi.kind];
   return (
     <motion.button
@@ -144,7 +144,7 @@ export default function NearbyMap() {
         ))}
         {/* faint spokes out to the essentials */}
         {NEARBY_POIS.map((p) => {
-          const { x, y } = project(p.bearing, p.dist, POI_OFFSET);
+          const { x, y } = project(p.bearing + (p.nudge ?? 0), p.dist, POI_OFFSET);
           return (
             <line
               key={p.kind}

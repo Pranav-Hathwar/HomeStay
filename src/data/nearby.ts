@@ -6,7 +6,17 @@ export type PlaceKind = 'city' | 'town' | 'village' | 'hamlet';
 export type Place = { name: string; kind: PlaceKind; dist: number; bearing: number; coords: string };
 
 export type PoiKind = 'hospital' | 'hotel' | 'liquor' | 'restaurant';
-export type Poi = { name: string; note: string; kind: PoiKind; dist: number; bearing: number; coords: string };
+export type Poi = {
+  name: string;
+  note: string;
+  kind: PoiKind;
+  dist: number;
+  bearing: number;
+  coords: string;
+  /** Optional degrees to fan the pin off its true bearing so pins that share a
+   *  direction (e.g. everything toward Mudigere) don't stack on the map. */
+  nudge?: number;
+};
 
 /** Cities, towns and villages near the homestay (bigger place = bigger symbol). */
 export const NEARBY_PLACES: Place[] = [
@@ -24,12 +34,13 @@ export const NEARBY_PLACES: Place[] = [
   { name: 'Chikkamagaluru', kind: 'city', dist: 35.2, bearing: 30, coords: '13.31801,75.77387' },
 ];
 
-/** Nearest essentials. Liquor isn't tagged in OSM out here, so it points at
- *  Mudigere town — the closest place with retail liquor. */
+/** Nearest essentials, closest first. Liquor isn't tagged in OSM out here, so
+ *  it points at Mudigere town — the closest place with retail liquor. */
 export const NEARBY_POIS: Poi[] = [
-  { name: 'Government Hospital', note: 'Sakleshpur', kind: 'hospital', dist: 22, bearing: 121, coords: '12.94112,75.7847' },
+  { name: 'Grand Rock Garden', note: 'Krishnapura · restaurant', kind: 'restaurant', dist: 7.9, bearing: 20, nudge: 15, coords: '13.11037,75.6359' },
+  { name: 'Liquor shops', note: 'Mudigere town', kind: 'liquor', dist: 10.5, bearing: 18, nudge: -15, coords: '13.13333,75.64192' },
   { name: 'Kumar Hotel', note: 'nearest hotel', kind: 'hotel', dist: 21.7, bearing: 152, coords: '12.87149,75.70643' },
-  { name: 'Liquor shops', note: 'Mudigere town', kind: 'liquor', dist: 10.5, bearing: 18, coords: '13.13333,75.64192' },
+  { name: 'Government Hospital', note: 'Sakleshpur', kind: 'hospital', dist: 22, bearing: 121, coords: '12.94112,75.7847' },
 ];
 
 /** Furthest point on the map; sets the radial scale. */
