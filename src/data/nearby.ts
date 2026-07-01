@@ -5,7 +5,7 @@
 export type PlaceKind = 'city' | 'town' | 'village' | 'hamlet';
 export type Place = { name: string; kind: PlaceKind; dist: number; bearing: number; coords: string };
 
-export type PoiKind = 'hospital' | 'hotel' | 'liquor';
+export type PoiKind = 'hospital' | 'hotel' | 'liquor' | 'restaurant';
 export type Poi = { name: string; note: string; kind: PoiKind; dist: number; bearing: number; coords: string };
 
 /** Cities, towns and villages near the homestay (bigger place = bigger symbol). */
@@ -34,18 +34,26 @@ export const NEARBY_POIS: Poi[] = [
 
 /** Furthest point on the map; sets the radial scale. */
 export const MAX_DIST = 35.2;
-/** Max marker radius as a % of the map's half-size (leaves room for labels). */
-const MAX_R = 40;
+/** Marker radii as a % of the map's half-size. MIN_R keeps a clear ring around
+ *  the centre so the cluster of near villages has room to breathe. */
+const MIN_R = 8;
+const MAX_R = 42;
+
+function radiusFor(dist: number): number {
+  const t = Math.sqrt(Math.min(dist, MAX_DIST) / MAX_DIST); // 0..1, sqrt-spread
+  return MIN_R + (MAX_R - MIN_R) * t;
+}
 
 /** Project a (bearing, distance) to an x/y percentage on the square map.
- *  Distance is sqrt-scaled so the tightly-clustered villages spread out. */
-export function project(bearing: number, dist: number): { x: number; y: number } {
-  const r = MAX_R * Math.sqrt(Math.min(dist, MAX_DIST) / MAX_DIST);
+ *  `offset` nudges a point radially outward (used to lift POI pins off the
+ *  town markers they share a location with). */
+export function project(bearing: number, dist: number, offset = 0): { x: number; y: number } {
+  const r = radiusFor(dist) + offset;
   const a = (bearing * Math.PI) / 180;
   return { x: 50 + r * Math.sin(a), y: 50 - r * Math.cos(a) };
 }
 
 /** Radius (in the 0–100 map space) of the ring for a given distance in km. */
 export function ringRadius(km: number): number {
-  return MAX_R * Math.sqrt(km / MAX_DIST);
+  return radiusFor(km);
 }

@@ -1,4 +1,4 @@
-import { Cross, BedDouble, Wine, ArrowUpRight, type LucideIcon } from 'lucide-react';
+import { Cross, BedDouble, Wine, UtensilsCrossed, ArrowUpRight, type LucideIcon } from 'lucide-react';
 import Section from '../components/Section';
 import SectionHeading from '../components/SectionHeading';
 import Reveal from '../components/Reveal';
@@ -6,11 +6,17 @@ import NearbyMap from '../components/NearbyMap';
 import { NEARBY_POIS, type Poi } from '../data/nearby';
 import { directionsUrl } from '../data/site';
 
-const POI_ICON: Record<Poi['kind'], LucideIcon> = { hospital: Cross, hotel: BedDouble, liquor: Wine };
+const POI_ICON: Record<Poi['kind'], LucideIcon> = {
+  hospital: Cross,
+  hotel: BedDouble,
+  liquor: Wine,
+  restaurant: UtensilsCrossed,
+};
 const POI_ACCENT: Record<Poi['kind'], string> = {
   hospital: 'border-rose-300/50 bg-rose-400/15 text-rose-200',
   hotel: 'border-sky-300/50 bg-sky-400/15 text-sky-200',
   liquor: 'border-gold/50 bg-gold/15 text-gold-bright',
+  restaurant: 'border-emerald-300/50 bg-emerald-400/15 text-emerald-200',
 };
 
 function LegendDot({ size, label }: { size: number; label: string }) {
