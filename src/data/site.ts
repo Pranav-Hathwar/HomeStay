@@ -6,7 +6,7 @@ export const ORIGIN = '13.04369,75.61125'; // homestay coords for map directions
 
 export const siteConfig = {
   name: 'Mungaru Homestays',
-  tagline: 'A private Malnad cottage in Gowdahalli Horati, Mudigere.',
+  tagline: 'A private home stay in Gowdahalli Horati, Mudigere.',
   address:
     'Gowdahalli Horati, Mudigere, Chikkamagaluru District, Karnataka 577132, India',
   coords: ORIGIN,
@@ -67,7 +67,7 @@ export const FAQS: Faq[] = [
   { q: 'Is food provided?', a: 'The home has a full kitchen — gas stove, induction, fridge, microwave and air fryer — so you can cook freely. Home-cooked Malnad meals can be arranged on request for an extra charge.' },
   { q: 'Are pets allowed?', a: 'Well-behaved pets are welcome with prior notice. Please mention your pet when you message us so we can prepare the space.' },
   { q: 'How is the mobile network and Wi-Fi?', a: 'Wi-Fi is available throughout the house and is fast enough to work remotely. Mobile coverage is decent for Jio and Airtel; expect the occasional rural dropout.' },
-  { q: 'How do we reach the homestay?', a: 'The cottage is ~252 km from Bengaluru, near Gowdahalli Horati, Mudigere, at 906 m. Tap any location on the Explore map for live driving directions from the doorstep.' },
+  { q: 'How do we reach the homestay?', a: 'The home stay is ~252 km from Bengaluru, near Gowdahalli Horati, Mudigere, at 906 m. Tap any location on the Explore map for live driving directions from the doorstep.' },
 ];
 
 export const AMENITIES = [

@@ -36,16 +36,16 @@ export const property = {
 
 // Four shots for the hero crossfade slider.
 export const heroImages: { src: string; alt: string }[] = [
-  { src: mudigere4, alt: 'The cottage and its terracotta-tiled roof under a monsoon sky' },
+  { src: mudigere4, alt: 'The home stay and its terracotta-tiled roof under a monsoon sky' },
   { src: mudigere5, alt: 'A foggy meadow path winding into the green' },
-  { src: mudigere2, alt: 'The Malnad cottage exterior under its terracotta roof' },
+  { src: mudigere2, alt: 'The private home stay exterior under its terracotta roof' },
   { src: mudigere6, alt: 'Veranda outlook across the Malnad valley at dawn' },
 ];
 
 // Gallery tiles (bento sizing handled in the Gallery component).
 export const galleryImages: { src: string; alt: string }[] = [
   { src: mudigere1, alt: 'Misty sunrise over the fields' },
-  { src: mudigere2, alt: 'The cottage exterior under a terracotta roof' },
+  { src: mudigere2, alt: 'The home stay exterior under a terracotta roof' },
   { src: mudigere3, alt: 'The house from the side, framed by green' },
   { src: mudigere4, alt: 'The bright living hall' },
   { src: mudigere5, alt: 'A foggy path through the meadow' },

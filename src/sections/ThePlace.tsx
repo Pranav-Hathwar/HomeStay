@@ -52,7 +52,7 @@ export default function ThePlace() {
           <Reveal delay={0.1}>
             <p className="text-dim">
               <span className="text-fog">Mungaru</span> is the first monsoon rain in Kannada — that
-              brief silver hour when the hills turn green and the whole valley exhales. The cottage
+              brief silver hour when the hills turn green and the whole valley exhales. The home stay
               sits at 906&nbsp;m in the coffee-estate belt above Mudigere, wrapped in mist and close
               to the trailheads of the Western Ghats.
             </p>

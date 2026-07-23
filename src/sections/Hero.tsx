@@ -130,7 +130,7 @@ export default function Hero() {
             className="mt-6 max-w-xl text-base text-dim sm:text-lg md:text-xl"
             style={{ textShadow: '0 1px 18px rgba(6,10,8,0.6)' }}
           >
-            A quiet Malnad cottage above the coffee country — green views, hot-water baths,
+            A quiet private home stay above the coffee country — green views, hot-water baths,
             a full kitchen, and the slow rhythm of monsoon mornings.
           </motion.p>
 

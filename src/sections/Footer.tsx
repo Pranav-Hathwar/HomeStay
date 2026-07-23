@@ -23,7 +23,7 @@ export default function Footer() {
             <BrandLogo className="h-24 w-auto sm:h-28" />
           </a>
           <p className="mt-4 max-w-sm text-sm leading-relaxed">
-            A private Malnad cottage in the coffee country of Mudigere, with misty mornings, green
+            A private home stay in the coffee country of Mudigere, with misty mornings, green
             views, and the slow rhythm of the first monsoon rain.
           </p>
         </div>

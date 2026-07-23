@@ -33,7 +33,7 @@ export default function TheStay() {
         <div className="relative overflow-hidden rounded-card-lg border border-line/50 shadow-glow">
           <img
             src={property.houseFront}
-            alt="The Malnad cottage exterior under its terracotta-tiled roof"
+            alt="The private home stay exterior under its terracotta-tiled roof"
             className="h-[320px] w-full object-cover md:h-[460px]"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/40 to-transparent" />
