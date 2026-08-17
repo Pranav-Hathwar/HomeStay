@@ -18,16 +18,16 @@ import bettada from '../assets/bettada-bhaireshwara.webp';
 import ettinaBhuja from '../assets/yetinabuja.webp';
 
 // ── New real photos (src/assets/new_images/) ─────────────────────────────────
-import hallImg        from '../assets/new_images/hall.png';
-import bedroomImg     from '../assets/new_images/bed_room.png';
-import kitchenImg     from '../assets/new_images/kitchen.png';
-import backyardImg    from '../assets/new_images/backyard_sitting.png';
-import houseFrontImg  from '../assets/new_images/full_house_front_view.png';
-import farmPondImg    from '../assets/new_images/farm_pool.png';
-import waterfallImg   from '../assets/new_images/Hidden_waterfall.jpg';
-import viewpointImg   from '../assets/new_images/view_point.png';
-import outdoorStoveImg from '../assets/new_images/outdoor_stove.png';
-import tentImg        from '../assets/new_images/tent_stay.png';
+import hallImg         from '../assets/new_images/hall.webp';
+import bedroomImg      from '../assets/new_images/bed_room.webp';
+import kitchenImg      from '../assets/new_images/kitchen.webp';
+import backyardImg     from '../assets/new_images/backyard_sitting.webp';
+import houseFrontImg   from '../assets/new_images/full_house_front_view.webp';
+import farmPondImg     from '../assets/new_images/farm_pool.webp';
+import waterfallImg    from '../assets/new_images/Hidden_waterfall.webp';
+import viewpointImg    from '../assets/new_images/view_point.webp';
+import outdoorStoveImg from '../assets/new_images/outdoor_stove.webp';
+import tentImg         from '../assets/new_images/tent_stay.webp';
 
 export const property = {
   // Atmosphere / exteriors
