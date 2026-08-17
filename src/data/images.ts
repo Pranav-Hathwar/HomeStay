@@ -17,35 +17,44 @@ import kudremukh from '../assets/kudremukh.webp';
 import bettada from '../assets/bettada-bhaireshwara.webp';
 import ettinaBhuja from '../assets/yetinabuja.webp';
 
+// ── New real photos (src/assets/new_images/) ─────────────────────────────────
+import hallImg       from '../assets/new_images/hall.png';
+import bedroomImg    from '../assets/new_images/bed_room.png';
+import kitchenImg    from '../assets/new_images/kitchen.png';
+import backyardImg   from '../assets/new_images/backyard_sitting.png';
+import houseFrontImg from '../assets/new_images/full_house_front_view.png';
+import farmPondImg   from '../assets/new_images/farm_pool.png';
+// outdoor_stove.HEIC and tent_stay.HEIC are in HEIC format (Apple-only).
+// Convert them to JPG/PNG/WebP and re-point the imports below when ready.
+
 export const property = {
   // Atmosphere / exteriors
-  mistySunrise: mudigere1,
-  foggyPath: mudigere5,
-  houseFront: mudigere2,
-  houseSide: mudigere3,
-  houseCorner: mudigere4,
+  mistySunrise:   mudigere1,
+  foggyPath:      mudigere5,
+  houseFront:     houseFrontImg,   // full house front view
+  houseSide:      mudigere3,
+  houseCorner:    mudigere4,
   verandaOutlook: mudigere6,
-  // Rooms — drop the real shots here when ready
-  livingHall: mudigere4,
-  bedroom: mudigere2,          // PLACEHOLDER — replace with bedroom photo
-  bathroom: bathroom,
-  // Kitchen — PLACEHOLDER — replace with kitchen photo
-  kitchen: mudigere3,
+  // Rooms
+  livingHall: hallImg,
+  bedroom:    bedroomImg,
+  bathroom:   bathroom,
+  kitchen:    kitchenImg,
   // Outdoors
-  backyard: mudigere6,         // PLACEHOLDER — replace with backyard/sitting-area photo
-  // Property Specials — PLACEHOLDER gradient cards until real shots arrive
-  stream: mudigere5,           // PLACEHOLDER — replace with stream photo
-  waterfall: mudigere1,        // PLACEHOLDER — replace with waterfall photo
-  viewpoint: mudigere6,        // PLACEHOLDER — replace with viewpoint photo
-  farmPond: mudigere3,         // PLACEHOLDER — replace with farm-pond photo
+  backyard: backyardImg,
+  // Property Specials
+  stream:    mudigere5,   // PLACEHOLDER — replace with stream photo when ready
+  waterfall: mudigere1,   // PLACEHOLDER — replace with waterfall photo when ready
+  viewpoint: mudigere6,   // PLACEHOLDER — replace with viewpoint photo when ready
+  farmPond:  farmPondImg,
 } as const;
 
 // Four shots for the hero crossfade slider.
 export const heroImages: { src: string; alt: string }[] = [
-  { src: mudigere4, alt: 'The home stay and its terracotta-tiled roof under a monsoon sky' },
-  { src: mudigere5, alt: 'A foggy meadow path winding into the green' },
-  { src: mudigere2, alt: 'The private home stay exterior under its terracotta roof' },
-  { src: mudigere6, alt: 'Veranda outlook across the Malnad valley at dawn' },
+  { src: houseFrontImg, alt: 'The home stay full front view under a monsoon sky' },
+  { src: mudigere5,     alt: 'A foggy meadow path winding into the green' },
+  { src: mudigere2,     alt: 'The private home stay exterior under its terracotta roof' },
+  { src: mudigere6,     alt: 'Veranda outlook across the Malnad valley at dawn' },
 ];
 
 // ── Gallery with categories ───────────────────────────────────────────────────
@@ -55,44 +64,45 @@ export type GalleryImage = {
   src: string;
   alt: string;
   category: GalleryCategory;
-  label?: string; // shown as a caption chip in the lightbox
+  label?: string;
 };
 
 export const galleryImages: GalleryImage[] = [
   // Outdoors / Exteriors
-  { src: mudigere1, alt: 'Misty sunrise over the fields', category: 'outdoors', label: 'Sunrise mist' },
-  { src: mudigere2, alt: 'The home stay exterior under a terracotta roof', category: 'outdoors', label: 'Home exterior' },
-  { src: mudigere3, alt: 'The house from the side, framed by green', category: 'outdoors', label: 'Garden side' },
-  { src: mudigere5, alt: 'A foggy path through the meadow', category: 'outdoors', label: 'Meadow path' },
-  { src: mudigere6, alt: 'Veranda outlook into coffee country', category: 'outdoors', label: 'Veranda view' },
+  { src: houseFrontImg, alt: 'Full front view of the home stay',            category: 'outdoors', label: 'House front' },
+  { src: mudigere1,     alt: 'Misty sunrise over the fields',               category: 'outdoors', label: 'Sunrise mist' },
+  { src: mudigere2,     alt: 'The home stay exterior under a terracotta roof', category: 'outdoors', label: 'Home exterior' },
+  { src: mudigere5,     alt: 'A foggy path through the meadow',             category: 'outdoors', label: 'Meadow path' },
+  { src: mudigere6,     alt: 'Veranda outlook into coffee country',          category: 'outdoors', label: 'Veranda view' },
+  { src: backyardImg,   alt: 'Backyard sitting area with green views',       category: 'outdoors', label: 'Backyard' },
   // Rooms / Interiors
-  { src: mudigere4, alt: 'The bright living hall', category: 'rooms', label: 'The Hall' },
-  { src: bathroom, alt: 'Bathroom with hot-water geyser', category: 'rooms', label: 'Bathroom' },
-  // PLACEHOLDER slots — will auto-display once the real images are added
-  // Kitchen — PLACEHOLDER (swap mudigere3 with kitchen photo)
-  { src: mudigere3, alt: 'Kitchen with gas stove, induction, microwave and air fryer (placeholder)', category: 'kitchen', label: 'Kitchen' },
-  // Property Specials — PLACEHOLDER
-  { src: mudigere5, alt: 'Private stream on the estate (placeholder)', category: 'specials', label: 'Private stream' },
-  { src: mudigere1, alt: 'Secret waterfall reached by off-road jeep (placeholder)', category: 'specials', label: 'Secret waterfall' },
-  { src: mudigere6, alt: 'Exclusive viewpoint over the Western Ghats (placeholder)', category: 'specials', label: 'Exclusive viewpoint' },
-  { src: mudigere3, alt: 'Farm pond for tubing on the estate (placeholder)', category: 'specials', label: 'Farm pond' },
+  { src: hallImg,       alt: 'The bright living hall',                       category: 'rooms', label: 'The Hall' },
+  { src: bedroomImg,    alt: 'Private bedroom',                              category: 'rooms', label: 'Bedroom' },
+  { src: bathroom,      alt: 'Bathroom with hot-water geyser',               category: 'rooms', label: 'Bathroom' },
+  // Kitchen
+  { src: kitchenImg,    alt: 'Fully equipped kitchen',                       category: 'kitchen', label: 'Kitchen' },
+  // Property Specials
+  { src: mudigere5,     alt: 'Private stream on the estate',                 category: 'specials', label: 'Private stream' },
+  { src: mudigere1,     alt: 'Secret waterfall — jeep-only terrain',         category: 'specials', label: 'Secret waterfall' },
+  { src: mudigere6,     alt: 'Exclusive viewpoint over the Western Ghats',   category: 'specials', label: 'Exclusive viewpoint' },
+  { src: farmPondImg,   alt: 'Farm pond for tubing on the estate',           category: 'specials', label: 'Farm pond' },
 ];
 
 export const GALLERY_TABS: { key: GalleryCategory; label: string }[] = [
-  { key: 'all', label: 'All Photos' },
+  { key: 'all',      label: 'All Photos' },
   { key: 'outdoors', label: 'Outdoors' },
-  { key: 'rooms', label: 'Rooms' },
-  { key: 'kitchen', label: 'Kitchen' },
+  { key: 'rooms',    label: 'Rooms' },
+  { key: 'kitchen',  label: 'Kitchen' },
   { key: 'specials', label: "Property's Special" },
 ];
 
 // Attraction photos keyed by the `img` field in site.ts.
 export const attractionImages: Record<string, string> = {
-  'ettina-bhuja.jpg': ettinaBhuja,
-  'devarmane.jpg': devarmane,
-  'fort.jpg': fort,
-  'belur.jpg': belur,
-  'bettada-bhaireshwara.jpg': bettada,
-  'dharmastala.jpg': dharmastala,
-  'kudremukh.jpg': kudremukh,
+  'ettina-bhuja.jpg':          ettinaBhuja,
+  'devarmane.jpg':             devarmane,
+  'fort.jpg':                  fort,
+  'belur.jpg':                 belur,
+  'bettada-bhaireshwara.jpg':  bettada,
+  'dharmastala.jpg':           dharmastala,
+  'kudremukh.jpg':             kudremukh,
 };
