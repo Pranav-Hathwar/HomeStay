@@ -1,4 +1,4 @@
-import { Cross, BedDouble, Wine, UtensilsCrossed, ArrowUpRight, type LucideIcon } from 'lucide-react';
+import { Cross, BedDouble, Wine, UtensilsCrossed, ShoppingBasket, ArrowUpRight, type LucideIcon } from 'lucide-react';
 import Section from '../components/Section';
 import SectionHeading from '../components/SectionHeading';
 import Reveal from '../components/Reveal';
@@ -11,12 +11,14 @@ const POI_ICON: Record<Poi['kind'], LucideIcon> = {
   hotel: BedDouble,
   liquor: Wine,
   restaurant: UtensilsCrossed,
+  store: ShoppingBasket,
 };
 const POI_ACCENT: Record<Poi['kind'], string> = {
   hospital: 'border-rose-300/50 bg-rose-400/15 text-rose-200',
   hotel: 'border-sky-300/50 bg-sky-400/15 text-sky-200',
   liquor: 'border-gold/50 bg-gold/15 text-gold-bright',
   restaurant: 'border-emerald-300/50 bg-emerald-400/15 text-emerald-200',
+  store: 'border-orange-300/50 bg-orange-400/15 text-orange-200',
 };
 
 function LegendDot({ size, label }: { size: number; label: string }) {
@@ -63,7 +65,7 @@ export default function Nearby() {
                 {NEARBY_POIS.map((p) => {
                   const Icon = POI_ICON[p.kind];
                   return (
-                    <li key={p.kind}>
+                    <li key={p.name}>
                       <a
                         href={directionsUrl(p.coords)}
                         target="_blank"
@@ -90,9 +92,8 @@ export default function Nearby() {
             </div>
 
             <p className="text-xs leading-relaxed text-faint">
-              Nearest village is Gowdahalli, ~1.4 km away; Mudigere town is ~10 km. Places from
-              OpenStreetMap — liquor points to Mudigere town, the closest retail. Distances are
-              straight-line; tap a marker for the real driving route.
+              Nearest village is Gowdahalli, ~1.4 km away; Mudigere town is ~10 km. Distances are
+              straight-line; tap any marker to open the real driving route.
             </p>
           </div>
         </Reveal>

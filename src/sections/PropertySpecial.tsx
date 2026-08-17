@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion';
-import { Waves, MapPin, MessageCircle, Sparkles, IndianRupee, Phone } from 'lucide-react';
+import { Waves, MapPin, MessageCircle, Sparkles, Phone } from 'lucide-react';
 import Reveal from '../components/Reveal';
 import Section from '../components/Section';
 import SectionHeading from '../components/SectionHeading';
@@ -27,23 +27,17 @@ const TYPE_ACCENT: Record<string, string> = {
   onsite: 'text-blue-300 border-blue-500/40 bg-blue-900/40',
 };
 
-function TypeBadge({ type, paid }: { type: SpecialExperience['type']; paid: boolean }) {
+function TypeBadge({ type }: { type: SpecialExperience['type'] }) {
   const labels: Record<string, string> = { walk: 'Easy Walk', jeep: 'Jeep Adventure', onsite: 'On Property' };
   return (
-    // Fixed-height badge row so all cards align regardless of badge count.
-    <div className="flex h-8 items-center gap-2">
-      <span className={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-[0.7rem] font-semibold uppercase tracking-[0.2em] ${TYPE_ACCENT[type]}`}>
+    // Fixed-height badge row — whitespace-nowrap prevents wrapping on any card.
+    <div className="flex h-8 items-center">
+      <span className={`inline-flex shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full border px-3 py-1 text-[0.7rem] font-semibold uppercase tracking-[0.2em] ${TYPE_ACCENT[type]}`}>
         {type === 'jeep' && <span className="text-xs">🚙</span>}
         {type === 'walk' && <span className="text-xs">🥾</span>}
         {type === 'onsite' && <span className="text-xs">🛟</span>}
         {labels[type]}
       </span>
-      {paid && (
-        <span className="inline-flex items-center gap-1 rounded-full border border-gold/40 bg-gold/10 px-3 py-1 text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-gold-bright">
-          <IndianRupee className="h-3 w-3" />
-          Per person
-        </span>
-      )}
     </div>
   );
 }
@@ -90,7 +84,7 @@ function SpecialCard({ exp, index }: { exp: SpecialExperience; index: number }) 
         {/* Content — flex-1 so cards stretch to equal height */}
         <div className="flex flex-1 flex-col gap-4 p-6">
           {/* Badge row: fixed height so text below always starts at the same point */}
-          <TypeBadge type={exp.type} paid={exp.paid} />
+          <TypeBadge type={exp.type} />
 
           <div>
             <h3 className="font-display text-2xl tracking-tight text-fog">{exp.title}</h3>

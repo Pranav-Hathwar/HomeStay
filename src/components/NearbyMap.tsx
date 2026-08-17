@@ -1,5 +1,5 @@
 import { motion, useReducedMotion } from 'framer-motion';
-import { Home, Cross, BedDouble, Wine, UtensilsCrossed, type LucideIcon } from 'lucide-react';
+import { Home, Cross, BedDouble, Wine, UtensilsCrossed, ShoppingBasket, type LucideIcon } from 'lucide-react';
 import {
   NEARBY_PLACES,
   NEARBY_POIS,
@@ -18,12 +18,14 @@ const POI_ICON: Record<Poi['kind'], LucideIcon> = {
   hotel: BedDouble,
   liquor: Wine,
   restaurant: UtensilsCrossed,
+  store: ShoppingBasket,
 };
 const POI_STYLE: Record<Poi['kind'], string> = {
   hospital: 'border-rose-300/70 bg-rose-400/25 text-rose-100',
   hotel: 'border-sky-300/70 bg-sky-400/25 text-sky-100',
   liquor: 'border-gold/70 bg-gold/25 text-gold-bright',
   restaurant: 'border-emerald-300/70 bg-emerald-400/25 text-emerald-100',
+  store: 'border-orange-300/70 bg-orange-400/25 text-orange-100',
 };
 
 const LABEL_SHADOW = { textShadow: '0 1px 6px rgba(6,10,8,0.9)' };

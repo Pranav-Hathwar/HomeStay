@@ -5,7 +5,7 @@
 export type PlaceKind = 'city' | 'town' | 'village' | 'hamlet';
 export type Place = { name: string; kind: PlaceKind; dist: number; bearing: number; coords: string };
 
-export type PoiKind = 'hospital' | 'hotel' | 'liquor' | 'restaurant';
+export type PoiKind = 'hospital' | 'hotel' | 'liquor' | 'restaurant' | 'store';
 export type Poi = {
   name: string;
   note: string;
@@ -37,7 +37,8 @@ export const NEARBY_PLACES: Place[] = [
 /** Nearest essentials, closest first. Liquor isn't tagged in OSM out here, so
  *  it points at Mudigere town — the closest place with retail liquor. */
 export const NEARBY_POIS: Poi[] = [
-  { name: 'Grand Rock Garden', note: 'Krishnapura · restaurant', kind: 'restaurant', dist: 7.9, bearing: 20, nudge: 15, coords: '13.11037,75.6359' },
+  { name: 'Condiment Store', note: 'Gowdahalli circle · next to Tourist Hotel', kind: 'store', dist: 3.5, bearing: 264, coords: '13.04100,75.5780' },
+  { name: 'Hotel Rock Garden', note: 'Krishnapura · restaurant & hotel', kind: 'restaurant', dist: 7.9, bearing: 20, nudge: 15, coords: '13.11037,75.6359' },
   { name: 'Liquor shops', note: 'Mudigere town', kind: 'liquor', dist: 10.5, bearing: 18, nudge: -15, coords: '13.13333,75.64192' },
   { name: 'Kumar Hotel', note: 'nearest hotel', kind: 'hotel', dist: 21.7, bearing: 152, coords: '12.87149,75.70643' },
   { name: 'Government Hospital', note: 'Sakleshpur', kind: 'hospital', dist: 22, bearing: 121, coords: '12.94112,75.7847' },
