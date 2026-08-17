@@ -18,14 +18,16 @@ import bettada from '../assets/bettada-bhaireshwara.webp';
 import ettinaBhuja from '../assets/yetinabuja.webp';
 
 // ── New real photos (src/assets/new_images/) ─────────────────────────────────
-import hallImg       from '../assets/new_images/hall.png';
-import bedroomImg    from '../assets/new_images/bed_room.png';
-import kitchenImg    from '../assets/new_images/kitchen.png';
-import backyardImg   from '../assets/new_images/backyard_sitting.png';
-import houseFrontImg from '../assets/new_images/full_house_front_view.png';
-import farmPondImg   from '../assets/new_images/farm_pool.png';
-// outdoor_stove.HEIC and tent_stay.HEIC are in HEIC format (Apple-only).
-// Convert them to JPG/PNG/WebP and re-point the imports below when ready.
+import hallImg        from '../assets/new_images/hall.png';
+import bedroomImg     from '../assets/new_images/bed_room.png';
+import kitchenImg     from '../assets/new_images/kitchen.png';
+import backyardImg    from '../assets/new_images/backyard_sitting.png';
+import houseFrontImg  from '../assets/new_images/full_house_front_view.png';
+import farmPondImg    from '../assets/new_images/farm_pool.png';
+import waterfallImg   from '../assets/new_images/Hidden_waterfall.jpg';
+import viewpointImg   from '../assets/new_images/view_point.png';
+import outdoorStoveImg from '../assets/new_images/outdoor_stove.png';
+import tentImg        from '../assets/new_images/tent_stay.png';
 
 export const property = {
   // Atmosphere / exteriors
@@ -43,10 +45,13 @@ export const property = {
   // Outdoors
   backyard: backyardImg,
   // Property Specials
-  stream:    mudigere5,   // PLACEHOLDER — replace with stream photo when ready
-  waterfall: mudigere1,   // PLACEHOLDER — replace with waterfall photo when ready
-  viewpoint: mudigere6,   // PLACEHOLDER — replace with viewpoint photo when ready
-  farmPond:  farmPondImg,
+  stream:       mudigere5,      // PLACEHOLDER — replace with stream photo when ready
+  waterfall:    waterfallImg,
+  viewpoint:    viewpointImg,
+  farmPond:     farmPondImg,
+  // TheStay extras
+  outdoorStove: outdoorStoveImg,
+  tent:         tentImg,
 } as const;
 
 // Four shots for the hero crossfade slider.
@@ -82,10 +87,12 @@ export const galleryImages: GalleryImage[] = [
   // Kitchen
   { src: kitchenImg,    alt: 'Fully equipped kitchen',                       category: 'kitchen', label: 'Kitchen' },
   // Property Specials
-  { src: mudigere5,     alt: 'Private stream on the estate',                 category: 'specials', label: 'Private stream' },
-  { src: mudigere1,     alt: 'Secret waterfall — jeep-only terrain',         category: 'specials', label: 'Secret waterfall' },
-  { src: mudigere6,     alt: 'Exclusive viewpoint over the Western Ghats',   category: 'specials', label: 'Exclusive viewpoint' },
-  { src: farmPondImg,   alt: 'Farm pond for tubing on the estate',           category: 'specials', label: 'Farm pond' },
+  { src: mudigere5,      alt: 'Private stream on the estate',                category: 'specials', label: 'Private stream' },
+  { src: waterfallImg,   alt: 'Secret waterfall reached by off-road jeep',   category: 'specials', label: 'Secret waterfall' },
+  { src: viewpointImg,   alt: 'Exclusive viewpoint over the Western Ghats',  category: 'specials', label: 'Exclusive viewpoint' },
+  { src: farmPondImg,    alt: 'Farm pond for tubing on the estate',          category: 'specials', label: 'Farm pond' },
+  { src: outdoorStoveImg, alt: 'Outdoor wood stove on the estate',           category: 'specials', label: 'Outdoor stove' },
+  { src: tentImg,        alt: 'Tent stay under the open sky',                category: 'specials', label: 'Tent stay' },
 ];
 
 export const GALLERY_TABS: { key: GalleryCategory; label: string }[] = [

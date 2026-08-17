@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion';
-import { Tv, BedDouble, Trees, Utensils, Bath, Users } from 'lucide-react';
+import { Tv, BedDouble, Trees, Utensils, Bath, Users, Tent, Flame, Droplets } from 'lucide-react';
 import Reveal from '../components/Reveal';
 import Section from '../components/Section';
 import { property } from '../data/images';
@@ -57,6 +57,27 @@ const SPACES: Space[] = [
     meta: 'Entire home',
     image: property.houseFront,
     imageAlt: 'The full home stay exterior',
+  },
+  {
+    icon: Tent,
+    title: 'Tent Stay',
+    meta: 'Under the open sky',
+    image: property.tent,
+    imageAlt: 'Tent stay on the estate',
+  },
+  {
+    icon: Flame,
+    title: 'Outdoor Stove',
+    meta: 'Wood-fire cooking',
+    image: property.outdoorStove,
+    imageAlt: 'Outdoor wood stove',
+  },
+  {
+    icon: Droplets,
+    title: 'Hande Bath',
+    meta: 'Traditional hot water',
+    image: property.bathroom,
+    imageAlt: 'Traditional hande hot water bath',
   },
 ];
 
