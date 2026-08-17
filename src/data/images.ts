@@ -28,6 +28,7 @@ import waterfallImg    from '../assets/new_images/Hidden_waterfall.webp';
 import viewpointImg    from '../assets/new_images/view_point.webp';
 import outdoorStoveImg from '../assets/new_images/outdoor_stove.webp';
 import tentImg         from '../assets/new_images/tent_stay.webp';
+import handeImg        from '../assets/new_images/hande.webp';
 
 export const property = {
   // Atmosphere / exteriors
@@ -52,6 +53,7 @@ export const property = {
   // TheStay extras
   outdoorStove: outdoorStoveImg,
   tent:         tentImg,
+  hande:        handeImg,
 } as const;
 
 // Four shots for the hero crossfade slider.
@@ -84,6 +86,7 @@ export const galleryImages: GalleryImage[] = [
   { src: hallImg,       alt: 'The bright living hall',                       category: 'rooms', label: 'The Hall' },
   { src: bedroomImg,    alt: 'Private bedroom',                              category: 'rooms', label: 'Bedroom' },
   { src: bathroom,      alt: 'Bathroom with hot-water geyser',               category: 'rooms', label: 'Bathroom' },
+  { src: handeImg,      alt: 'Traditional hande hot water bath',             category: 'rooms', label: 'Hande Bath' },
   // Kitchen
   { src: kitchenImg,    alt: 'Fully equipped kitchen',                       category: 'kitchen', label: 'Kitchen' },
   // Property Specials

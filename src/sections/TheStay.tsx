@@ -76,7 +76,7 @@ const SPACES: Space[] = [
     icon: Droplets,
     title: 'Hande Bath',
     meta: 'Traditional hot water',
-    image: property.bathroom,
+    image: property.hande,
     imageAlt: 'Traditional hande hot water bath',
   },
 ];
