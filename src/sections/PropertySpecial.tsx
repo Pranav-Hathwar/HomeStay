@@ -66,10 +66,11 @@ function SpecialCard({ exp, index }: { exp: SpecialExperience; index: number }) 
               src={img}
               alt={exp.title}
               style={{ y: imgY }}
-              className="absolute inset-0 h-[116%] w-full object-cover opacity-50 mix-blend-luminosity transition-opacity duration-500 group-hover:opacity-70"
+              className="absolute inset-0 h-[116%] w-full object-cover transition-transform duration-700 group-hover:scale-105"
             />
           )}
-          <div className="absolute inset-0 bg-gradient-to-t from-card via-card/50 to-transparent" />
+          {/* light bottom scrim to protect the distance chip and emoji */}
+          <div className="absolute inset-0 bg-gradient-to-t from-ink/60 via-transparent to-ink/30" />
 
           <span className="absolute left-4 top-4 flex items-center gap-1.5 rounded-full border border-line/50 bg-ink/60 px-3 py-1.5 text-xs uppercase tracking-[0.2em] text-gold-bright backdrop-blur">
             <MapPin className="h-3 w-3" />
@@ -81,8 +82,8 @@ function SpecialCard({ exp, index }: { exp: SpecialExperience; index: number }) 
           </div>
         </div>
 
-        {/* Content — flex-1 so cards stretch to equal height */}
-        <div className="flex flex-1 flex-col gap-4 p-6">
+        {/* Content */}
+        <div className="flex flex-1 flex-col gap-4 bg-card p-6">
           {/* Badge row: fixed height so text below always starts at the same point */}
           <TypeBadge type={exp.type} />
 
