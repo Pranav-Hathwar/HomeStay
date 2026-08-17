@@ -5,6 +5,7 @@ import BrandLogo from './BrandLogo';
 const LINKS = [
   { label: 'The Place', href: '#the-place' },
   { label: 'The Stay', href: '#the-stay' },
+  { label: "Property's Special", href: '#property-special', special: true },
   { label: 'Explore', href: '#explore' },
   { label: 'Gallery', href: '#gallery' },
   { label: 'Reviews', href: '#reviews' },
@@ -68,9 +69,28 @@ export default function Nav() {
             <BrandLogo className="h-14 w-auto sm:h-16" />
           </a>
 
-          <div className="hidden items-center gap-8 lg:flex">
+          <div className="hidden items-center gap-6 lg:flex">
             {LINKS.map((l) => {
               const isActive = active === l.href.slice(1);
+              if ((l as { special?: boolean }).special) {
+                return (
+                  <a
+                    key={l.href}
+                    href={l.href}
+                    aria-current={isActive ? 'true' : undefined}
+                    className="relative inline-flex items-center gap-1.5 rounded-full border border-gold/40 bg-gold/10 px-3 py-1 text-xs font-semibold text-gold-bright transition hover:bg-gold/20"
+                  >
+                    ✦ {l.label}
+                    {isActive && (
+                      <motion.span
+                        layoutId="nav-active"
+                        className="absolute -bottom-1.5 left-0 h-0.5 w-full rounded-full bg-gold-bright"
+                        transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                      />
+                    )}
+                  </a>
+                );
+              }
               return (
                 <a
                   key={l.href}

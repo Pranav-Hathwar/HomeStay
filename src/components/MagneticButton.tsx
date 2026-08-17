@@ -21,14 +21,14 @@ export default function MagneticButton({
   className = '',
   strength = 0.35,
   spotlight = false,
+  ...rest
 }: {
   href: string;
   children: ReactNode;
   className?: string;
-  /** How strongly the button follows the cursor (0–1). */
   strength?: number;
-  /** Render a cursor-following gold glow inside the button. */
   spotlight?: boolean;
+  [key: string]: unknown;
 }) {
   const reduce = useReducedMotion();
   const ref = useRef<HTMLAnchorElement>(null);
@@ -65,6 +65,7 @@ export default function MagneticButton({
     <motion.a
       ref={ref}
       href={href}
+      {...(rest as Record<string, unknown>)}
       onMouseMove={handleMove}
       onMouseLeave={reset}
       style={reduce ? undefined : { x, y }}

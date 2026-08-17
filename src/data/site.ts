@@ -15,14 +15,18 @@ export const siteConfig = {
   elevation: '906 m',
   distanceFromBengaluru: '~252 km',
 
-  // ── PLACEHOLDERS — replace these ──────────────────────────────────────────
-  phone: '91 9945322145',            // <PHONE> WhatsApp number, digits only, country code first
-  email: 'pranav4hathwar@gmail.com',       // <EMAIL>
+  // ── Contact ───────────────────────────────────────────────────────────────
+  // Primary host — Arjun (also used for WhatsApp booking flow)
+  phone: '91 7829349054',
+  phoneName: 'Arjun',
+  // Secondary / backup number
+  phoneSecondary: '91 9945322145',
+  email: 'pranav4hathwar@gmail.com',
   airbnbUrl: 'https://www.airbnb.co.in/', // <AIRBNB_LISTING_URL>
   instagramUrl: 'https://instagram.com/', // <INSTAGRAM_URL>
-  pricePerNight: '',                          // intentionally blank — price is NOT shown on the site (approx ₹800 per person; quote on WhatsApp)
-  siteUrl: 'https://home-stay-two.vercel.app', // <SITE_URL> canonical/OG/sitemap base, no trailing slash
-  ogImage: '/og-image.jpg',         // <OG_IMAGE> 1200×630, placed in /public
+  pricePerNight: '',                       // intentionally blank — quote on WhatsApp
+  siteUrl: 'https://home-stay-two.vercel.app', // <SITE_URL>
+  ogImage: '/og-image.jpg',
   // ──────────────────────────────────────────────────────────────────────────
 
   mapsUrl: 'https://www.google.com/maps?q=13.04369,75.61125',
@@ -84,6 +88,73 @@ export const AMENITIES = [
   'Free Parking',
 ] as const;
 
+// ── Property's Special ───────────────────────────────────────────────────────
+// Exclusive, private experiences arranged by the host. Images go in src/assets/specials/.
+
+export type SpecialExperience = {
+  id: string;
+  title: string;
+  tagline: string;
+  description: string;
+  distance: string;
+  type: 'walk' | 'jeep' | 'onsite';
+  paid: boolean;
+  perPerson: boolean;
+  placeholder: string; // gradient class until real photo arrives
+  icon: string;        // emoji icon for the card
+};
+
+export const PROPERTY_SPECIALS: SpecialExperience[] = [
+  {
+    id: 'stream',
+    title: 'Private Stream',
+    tagline: 'A hidden ribbon of water, all yours.',
+    description: 'A quick 100-metre stroll from the house opens onto a secluded stream running through the estate. Cool your feet, listen to the current, and forget the world.',
+    distance: '100 m walk',
+    type: 'walk',
+    paid: false,
+    perPerson: false,
+    placeholder: 'from-teal-900/80 to-cyan-950',
+    icon: '💧',
+  },
+  {
+    id: 'waterfall',
+    title: 'Secret Waterfall',
+    tagline: 'Reached only by our off-road jeep.',
+    description: 'Deep in the forest, down a near-vertical slushy incline. Our jeep tackles the crazy off-road terrain so you arrive at a cascade most people never see. Per-person charges apply.',
+    distance: 'Jeep ride',
+    type: 'jeep',
+    paid: true,
+    perPerson: true,
+    placeholder: 'from-emerald-900/80 to-green-950',
+    icon: '🏔️',
+  },
+  {
+    id: 'viewpoint',
+    title: 'Exclusive Viewpoint',
+    tagline: 'The Ghats, unobstructed. Jeep-only terrain.',
+    description: 'A steep, slush-heavy off-road climb leads to a ridge viewpoint that rewards you with a sweeping panorama of the Western Ghats. Completely unexplored by tourists. Per-person charges apply.',
+    distance: 'Jeep ride',
+    type: 'jeep',
+    paid: true,
+    perPerson: true,
+    placeholder: 'from-indigo-900/80 to-slate-950',
+    icon: '🌄',
+  },
+  {
+    id: 'farm-pond',
+    title: 'Farm Pond Float',
+    tagline: 'Tube in a private pond on the estate.',
+    description: "Spend an afternoon floating on tubes in the estate farm pond. A completely private, unhurried experience you won't find anywhere else. Contact Arjun for details and arrangements.",
+    distance: 'On property',
+    type: 'onsite',
+    paid: true,
+    perPerson: false,
+    placeholder: 'from-blue-900/80 to-cyan-950',
+    icon: '🛟',
+  },
+];
+
 // ── Helpers ──────────────────────────────────────────────────────────────────
 
 /** Google Maps directions deep-link (no API key required). */
@@ -100,10 +171,17 @@ export function embedDirectionsUrl(destCoords: string): string | null {
 
 /** Phone digits only (no spaces/+/dashes) — the format wa.me requires. */
 export const phoneDigits = siteConfig.phone.replace(/\D/g, '');
+export const phoneSecondaryDigits = siteConfig.phoneSecondary.replace(/\D/g, '');
 
-/** Prefilled WhatsApp link. */
+/** Prefilled WhatsApp link (defaults to primary / Arjun). */
 export function whatsappUrl(message?: string): string {
   const text = message ?? "Hi Mungaru Homestays! I'd like to know more about the stay.";
+  return `https://wa.me/${phoneDigits}?text=${encodeURIComponent(text)}`;
+}
+
+/** WhatsApp link for a specific experience inquiry. */
+export function specialWhatsappUrl(experienceTitle: string): string {
+  const text = `Hi Arjun! I'm staying at Mungaru Homestays and would love to know more about the "${experienceTitle}" experience. Could you share details and pricing?`;
   return `https://wa.me/${phoneDigits}?text=${encodeURIComponent(text)}`;
 }
 

@@ -17,6 +17,7 @@ import WhyMungaru from './sections/WhyMungaru';
 import TheStay from './sections/TheStay';
 import Amenities from './sections/Amenities';
 import Explore from './sections/Explore';
+import PropertySpecial from './sections/PropertySpecial';
 import Nearby from './sections/Nearby';
 import Weather from './sections/Weather';
 import Gallery from './sections/Gallery';
@@ -80,6 +81,7 @@ export default function App() {
         <TheStay />
         <Amenities />
         <Explore />
+        <PropertySpecial />
         <Nearby />
         <Weather />
         <Gallery />

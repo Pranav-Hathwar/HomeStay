@@ -1,10 +1,11 @@
-import { Instagram, MessageCircle, Map, MapPin, Mail, Phone } from 'lucide-react';
+import { Instagram, MessageCircle, Map, MapPin, Mail, Phone, Sparkles } from 'lucide-react';
 import BrandLogo from '../components/BrandLogo';
 import { siteConfig, whatsappUrl } from '../data/site';
 
 const NAV = [
   { label: 'The Place', href: '#the-place' },
   { label: 'The Stay', href: '#the-stay' },
+  { label: "Property's Special", href: '#property-special' },
   { label: 'Explore', href: '#explore' },
   { label: 'Gallery', href: '#gallery' },
   { label: 'Book', href: '#book' },
@@ -54,11 +55,28 @@ export default function Footer() {
                 </span>
               </span>
             </li>
+            {/* Primary contact — Arjun */}
             <li className="flex items-center gap-2.5">
               <Phone className="h-4 w-4 shrink-0 text-gold-bright" />
-              <a href={`tel:${siteConfig.phone}`} className="transition-colors hover:text-fog">
-                {siteConfig.phone}
-              </a>
+              <span className="flex flex-col gap-0.5">
+                <a href={`tel:${siteConfig.phone}`} className="transition-colors hover:text-fog">
+                  {siteConfig.phone}
+                </a>
+                <span className="flex items-center gap-1 text-xs text-gold-bright/70">
+                  <Sparkles className="h-2.5 w-2.5" />
+                  {siteConfig.phoneName} · Primary
+                </span>
+              </span>
+            </li>
+            {/* Secondary */}
+            <li className="flex items-center gap-2.5">
+              <Phone className="h-4 w-4 shrink-0 text-dim/60" />
+              <span className="flex flex-col gap-0.5">
+                <a href={`tel:${siteConfig.phoneSecondary}`} className="transition-colors hover:text-fog">
+                  {siteConfig.phoneSecondary}
+                </a>
+                <span className="text-xs text-faint">Secondary</span>
+              </span>
             </li>
             <li className="flex items-center gap-2.5">
               <Mail className="h-4 w-4 shrink-0 text-gold-bright" />

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { Home, Users, ParkingCircle, Mountain, MessageCircle, ExternalLink, ArrowRight } from 'lucide-react';
+import { Home, Users, ParkingCircle, Mountain, MessageCircle, ExternalLink, ArrowRight, Phone } from 'lucide-react';
 import Reveal from '../components/Reveal';
 import Parallax from '../components/Parallax';
 import Section from '../components/Section';
@@ -157,6 +157,20 @@ export default function Book() {
                 >
                   WhatsApp <MessageCircle className="h-4 w-4" />
                 </a>
+              </div>
+
+              {/* Direct call strip */}
+              <div className="mt-4 flex items-center gap-3 rounded-2xl border border-line/40 bg-moss/30 p-3.5">
+                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-gold/40 bg-gold/10">
+                  <Phone className="h-4 w-4 text-gold-bright" />
+                </div>
+                <div className="min-w-0 flex-1">
+                  <p className="text-xs text-dim">Call or WhatsApp directly</p>
+                  <a href={`tel:${siteConfig.phone}`} className="text-sm font-semibold text-fog hover:text-gold-bright transition-colors">
+                    {siteConfig.phone}
+                  </a>
+                  <span className="ml-2 text-xs text-gold-bright/70">{siteConfig.phoneName}</span>
+                </div>
               </div>
             </motion.form>
           </Reveal>
