@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { Home, Users, ParkingCircle, Mountain, MessageCircle, ExternalLink, ArrowRight, Phone } from 'lucide-react';
+import { Home, Users, ParkingCircle, Mountain, MessageCircle, ArrowRight, Phone } from 'lucide-react';
 import Reveal from '../components/Reveal';
 import Parallax from '../components/Parallax';
 import Section from '../components/Section';
@@ -171,20 +171,12 @@ export default function Book() {
             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
           </motion.button>
 
-          <div className="mt-4 flex flex-col gap-3 sm:flex-row">
-            <a
-              href={siteConfig.airbnbUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="flex flex-1 items-center justify-center gap-2 rounded-full border border-line/60 px-4 py-3 text-center text-sm text-fog transition hover:bg-white/5"
-            >
-              Book on Airbnb <ExternalLink className="h-4 w-4" />
-            </a>
+          <div className="mt-4">
             <a
               href={whatsappUrl()}
               target="_blank"
               rel="noreferrer"
-              className="flex flex-1 items-center justify-center gap-2 rounded-full border border-line/60 px-4 py-3 text-center text-sm text-fog transition hover:bg-white/5"
+              className="flex w-full items-center justify-center gap-2 rounded-full border border-line/60 px-4 py-3 text-sm text-fog transition hover:bg-white/5"
             >
               WhatsApp <MessageCircle className="h-4 w-4" />
             </a>
