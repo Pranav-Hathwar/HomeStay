@@ -15,18 +15,16 @@ const PERKS = [
 
 const GUEST_OPTIONS = [
   '1 Guest', '2 Guests', '3 Guests', '4 Guests',
-  '5 Guests', '6 Guests', '7 Guests', '8 Guests', '9 Guests',
-  '10–12 Guests (large group)',
+  '5 Guests', '6 Guests', '7 Guests',
+  '8–12 Guests (large group — contact Arjun)',
 ];
 
 const PRICING_TIERS = [
-  { guests: '1 – 4 guests', price: '₹6,000', note: 'flat rate' },
-  { guests: '5 guests',     price: '₹6,800', note: '₹6,000 + ₹800' },
-  { guests: '6 guests',     price: '₹7,600', note: '₹6,000 + ₹1,600' },
-  { guests: '7 guests',     price: '₹8,400', note: '₹6,000 + ₹2,400' },
-  { guests: '8 guests',     price: '₹9,200', note: '₹6,000 + ₹3,200' },
-  { guests: '9 guests',     price: '₹10,000', note: '₹6,000 + ₹4,000' },
-  { guests: '10 – 12 guests', price: 'Contact Arjun', note: 'group rate' },
+  { guests: '1 – 4 guests',  price: '₹6,000', note: 'flat rate' },
+  { guests: '5 guests',      price: '₹6,800', note: '₹6,000 + ₹800' },
+  { guests: '6 guests',      price: '₹7,600', note: '₹6,000 + ₹1,600' },
+  { guests: '7 guests',      price: '₹8,400', note: '₹6,000 + ₹2,400' },
+  { guests: '8 – 12 guests', price: 'Contact Arjun', note: 'group rate' },
 ];
 
 export default function Book() {
@@ -91,8 +89,8 @@ export default function Book() {
               ))}
             </div>
             <p className="mt-2 text-[0.68rem] leading-relaxed text-faint">
-              Base rate ₹6,000 covers 1–4 guests. Each additional guest above 4 is ₹800/head.
-              Groups of 10–12 contact Arjun directly for a group rate.
+              Base rate ₹6,000 covers 1–4 guests. Each additional guest above 4 is ₹800/head up to 7.
+              Groups of 8–12 contact Arjun directly for a group rate.
             </p>
           </div>
         </Reveal>
